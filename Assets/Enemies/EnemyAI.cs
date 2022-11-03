@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,14 +8,12 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] Transform target;
     [SerializeField] float chaseRange = 5f;
-
-
-
     [SerializeField] bool isActive = true;
-
     NavMeshAgent navMeshAgent;
 
     float distanceToTarget = Mathf.Infinity;
+    bool isProvoked = false;
+
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -24,11 +23,39 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         distanceToTarget = Vector3.Distance(target.position, transform.position);
-        if (distanceToTarget <= chaseRange)
+        
+        if (isProvoked)
         {
-            navMeshAgent.SetDestination(target.position);
+            EngageTarget();
+        } 
+        else if (distanceToTarget <= chaseRange)
+        {
+            isProvoked = true;
         }
            
+    }
+
+    private void EngageTarget()
+    {
+        if (distanceToTarget >= navMeshAgent.stoppingDistance)
+        {
+            ChaseTarget();
+        }
+        if (distanceToTarget <= navMeshAgent.stoppingDistance)
+        {
+            AttackTarget();
+        }
+    }
+    private void ChaseTarget()
+    {
+        GetComponent<Animator>().SetBool("isAttacking", false);
+        GetComponent<Animator>().SetTrigger("move");
+        navMeshAgent.SetDestination(target.position);
+    }
+    private void AttackTarget()
+    {
+        GetComponent<Animator>().SetBool("isAttacking", true);
+        Debug.Log(name + "is attacking" + target.name);
     }
     private void OnDrawGizmosSelected()
     {
@@ -36,4 +63,5 @@ public class EnemyAI : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, chaseRange);
     }
+
 }

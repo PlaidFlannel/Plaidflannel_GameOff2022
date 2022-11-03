@@ -10,7 +10,10 @@ public class PlayerObjectHealth : MonoBehaviour
         
     }
 
-    
+    public float GetHealth()
+    {
+        return health;
+    }
     void Update()
     {
         
