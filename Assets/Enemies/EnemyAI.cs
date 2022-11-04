@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    //[SerializeField] Transform target;
     [SerializeField] float chaseRange = 5f;
     [SerializeField] bool isActive = true;
     NavMeshAgent navMeshAgent;
@@ -14,25 +14,39 @@ public class EnemyAI : MonoBehaviour
     float distanceToTarget = Mathf.Infinity;
     bool isProvoked = false;
 
+    GameObject targetObject;
+    Transform target;
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        //Transform target = GetComponent<PlayerObjectHealth>().transform;
+        targetObject = GameObject.FindWithTag("Ball");
+        target = targetObject.transform;
     }
 
 
     void Update()
     {
-        distanceToTarget = Vector3.Distance(target.position, transform.position);
-        
-        if (isProvoked)
+        if (target == null) { GetComponent<Animator>().SetTrigger("idle"); }
+        if (target != null)
         {
-            EngageTarget();
-        } 
-        else if (distanceToTarget <= chaseRange)
-        {
-            isProvoked = true;
+            CheckDistance();
+
+            if (isProvoked)
+            {
+                EngageTarget();
+
+            }
+            else if (distanceToTarget <= chaseRange)
+            {
+                isProvoked = true;
+            }
         }
-           
+    }
+
+    private void CheckDistance()
+    {
+        distanceToTarget = Vector3.Distance(target.position, transform.position);
     }
 
     private void EngageTarget()
