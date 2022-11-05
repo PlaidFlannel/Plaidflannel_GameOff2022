@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Gravity")]
     [SerializeField] float gravity = 9.8f;
     [SerializeField] float gravityMultiplier = 2;
-    [SerializeField] float groundedGravity = -0.5f;
+    //[SerializeField] float groundedGravity = -0.5f;
     [SerializeField] float jumpHeight = 3f;
     private float velocityY;
 

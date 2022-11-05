@@ -8,15 +8,19 @@ public class BuildingManager : MonoBehaviour
     public GameObject[] objects;
     private GameObject pendingObject;
 
+    [SerializeField] private Material[] materials;
+
     private Vector3 pos;
     private RaycastHit hit;
-
+    [Tooltip("Identify which layer will allow building - such as 'Ground'")]
     [SerializeField] private LayerMask layerMask;
 
     public float rotateAmount = 45;
     public float gridSize; //determines grid size which objects will snap to
     bool gridSnapOn = true;
     [SerializeField] private Toggle gridToggle;
+
+    public bool canPlace;
     void Update()
     {
         if(pendingObject != null)
@@ -31,7 +35,7 @@ public class BuildingManager : MonoBehaviour
             }
             else { pendingObject.transform.position = pos; }
             
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && canPlace)
             {
                 PlaceObject();
             }
@@ -39,10 +43,13 @@ public class BuildingManager : MonoBehaviour
             {
                 RotateObject();
             }
+            
         }
+        //UpdateMaterials();
     }
     public void PlaceObject()
     {
+        pendingObject.GetComponent<MeshRenderer>().material = materials[2];
         pendingObject = null;
 
     }
@@ -59,6 +66,19 @@ public class BuildingManager : MonoBehaviour
             pos = hit.point;
         }
     }
+    void UpdateMaterials() 
+    {
+        if (canPlace)
+        {
+            Debug.Log(pendingObject.GetComponent<MeshRenderer>().material);
+            //pendingObject.GetComponent<MeshRenderer>().material = materials[0];
+        }
+        if (!canPlace)
+        {
+            pendingObject.GetComponent<MeshRenderer>().material = materials[1];
+        }
+    }
+
     public void SelectObject(int index)
     {
         pendingObject = Instantiate(objects[index], pos, transform.rotation);
