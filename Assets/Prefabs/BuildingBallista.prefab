@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2984271659609949134}
   - component: {fileID: 4520296917221257384}
   - component: {fileID: 4994224221678741612}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2753958363118756589}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.792, z: 0.36100006}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0.36100006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4827,7 +4827,7 @@ GameObject:
   - component: {fileID: 2775083666983211292}
   - component: {fileID: 2960509711745918568}
   - component: {fileID: 4370329955146171139}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BuildingBallista
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -4877,6 +4877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bfefddd339b8ef45a8d8f18ddbcde9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlaced: 0
 --- !u!33 &5314251112017823720
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4904,7 +4905,8 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials: []
+  m_Materials:
+  - {fileID: 2100000, guid: 3b57345f7164f7a4d8cefa3fbcff2ac9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4937,8 +4939,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.6182183, z: 1}
+  m_Center: {x: 0, y: -0.19089088, z: 0}
 --- !u!54 &4370329955146171139
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5006,12 +5008,62 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3868710468543803471, guid: a857b665a13f98844814399fbc72ab03, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -3868710468543803471, guid: a857b665a13f98844814399fbc72ab03, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a857b665a13f98844814399fbc72ab03, type: 3}
       propertyPath: m_Name
       value: weapon_ballista
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a857b665a13f98844814399fbc72ab03, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a857b665a13f98844814399fbc72ab03, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087413553415064497, guid: a857b665a13f98844814399fbc72ab03, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087413553415064497, guid: a857b665a13f98844814399fbc72ab03, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276442123569471543, guid: a857b665a13f98844814399fbc72ab03, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276442123569471543, guid: a857b665a13f98844814399fbc72ab03, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a857b665a13f98844814399fbc72ab03, type: 3}
+--- !u!1 &3698497181970321010 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a857b665a13f98844814399fbc72ab03, type: 3}
+  m_PrefabInstance: {fileID: 4580963767488279331}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &3835939989566156745
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3698497181970321010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.75, y: 0.17642245, z: 0.75}
+  m_Center: {x: 0, y: 0.11031644, z: 0}
 --- !u!4 &4042089774724388040 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a857b665a13f98844814399fbc72ab03, type: 3}

@@ -8,6 +8,7 @@ public class CheckBuildPlacement : MonoBehaviour
 {
 
     BuildingManager buildingManager;
+    public bool isPlaced; //can be used by other script on buildable object to activate features like particles systems & targeting
     void Start()
     {
         buildingManager = GameObject.Find("BuildingManager").GetComponent<BuildingManager>();

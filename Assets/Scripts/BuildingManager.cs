@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BuildingManager : MonoBehaviour
 {
     public GameObject[] objects;
-    private GameObject pendingObject;
+    public GameObject pendingObject;
 
     [SerializeField] private Material[] materials;
 
@@ -20,11 +20,18 @@ public class BuildingManager : MonoBehaviour
     bool gridSnapOn = true;
     [SerializeField] private Toggle gridToggle;
 
+    public BuildingTargetFinder buildingTargetFinder;
     public bool canPlace;
+
+
     void Update()
     {
         if(pendingObject != null)
         {
+            
+            var toggleBuildableAction = pendingObject.GetComponent<CheckBuildPlacement>();
+            toggleBuildableAction.isPlaced = false;
+            UpdateMaterials();
             if (gridSnapOn)
             {
                 pendingObject.transform.position = new Vector3(
@@ -37,21 +44,19 @@ public class BuildingManager : MonoBehaviour
             
             if (Input.GetMouseButtonDown(0) && canPlace)
             {
+                toggleBuildableAction.isPlaced = true;
                 PlaceObject();
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
                 RotateObject();
             }
-            
         }
-        //UpdateMaterials();
     }
     public void PlaceObject()
     {
         pendingObject.GetComponent<MeshRenderer>().material = materials[2];
         pendingObject = null;
-
     }
     public void RotateObject()
     {
@@ -70,10 +75,10 @@ public class BuildingManager : MonoBehaviour
     {
         if (canPlace)
         {
-            Debug.Log(pendingObject.GetComponent<MeshRenderer>().material);
-            //pendingObject.GetComponent<MeshRenderer>().material = materials[0];
+            //Debug.Log(pendingObject.GetComponent<MeshRenderer>().material);
+            pendingObject.GetComponent<MeshRenderer>().material = materials[0];
         }
-        if (!canPlace)
+        else
         {
             pendingObject.GetComponent<MeshRenderer>().material = materials[1];
         }

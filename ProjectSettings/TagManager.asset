@@ -15,8 +15,8 @@ TagManager:
   - Water
   - UI
   - Player layer
-  - 
-  - 
+  - Tooltips
+  - Objects
   - 
   - 
   - 
@@ -43,4 +43,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Buttons sorting layer
+    uniqueID: 1068083341
+    locked: 0
+  - name: Tooltips sorting layer
+    uniqueID: 2871995315
     locked: 0

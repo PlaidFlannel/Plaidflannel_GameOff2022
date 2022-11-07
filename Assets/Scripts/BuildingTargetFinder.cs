@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Android;
 using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.GraphicsBuffer;
 
@@ -10,12 +11,26 @@ public class BuildingTargetFinder : MonoBehaviour
     [SerializeField] Transform weapon;
     [SerializeField] ParticleSystem projectileParticles;
     [SerializeField] float range = 15f;
-
+    
     Transform target;
+    private void Start()
+    {
+
+    }
     void Update()
     {
-        FindClosestTarget();
-        AimWeapon();
+        var emission = projectileParticles.emission;
+        if (gameObject.GetComponent<CheckBuildPlacement>().isPlaced)
+        {
+            emission.enabled = true;
+            FindClosestTarget();
+            AimWeapon();
+        }
+        else
+        {
+             emission.enabled = false;
+        }
+
     }
     void FindClosestTarget()
     {

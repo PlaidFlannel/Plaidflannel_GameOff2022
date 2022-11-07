@@ -407,7 +407,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseRange: 10
-  isActive: 1
 --- !u!65 &1049523713218997071
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -419,8 +418,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2467499, y: 4.5976787, z: 1.4083302}
-  m_Center: {x: -0.000034928322, y: 1.2939565, z: 0.2041651}
+  m_Size: {x: 1.2467499, y: 2.062694, z: 1.4083302}
+  m_Center: {x: -0.000034928322, y: 0.026464224, z: 0.2041651}
 --- !u!54 &8482008517063418560
 Rigidbody:
   m_ObjectHideFlags: 0
