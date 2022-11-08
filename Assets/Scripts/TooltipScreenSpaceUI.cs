@@ -6,7 +6,6 @@ using TMPro;
 public class TooltipScreenSpaceUI : MonoBehaviour
 {
     public static TooltipScreenSpaceUI Instance { get; private set; }
-
     [SerializeField] private RectTransform canvasRectTransform;
 
     private RectTransform backgroundRectTransform;
@@ -72,7 +71,7 @@ public class TooltipScreenSpaceUI : MonoBehaviour
     private void ShowTooltip(string tooltipText)
     {
         gameObject.SetActive(true);
-        //transform.SetAsFirstSibling();
+        transform.SetAsLastSibling();
         if (tooltipText == null) 
         {
             tooltipText = "default text";

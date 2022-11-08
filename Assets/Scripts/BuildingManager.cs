@@ -87,7 +87,7 @@ public class BuildingManager : MonoBehaviour
     public void SelectObject(int index)
     {
         pendingObject = Instantiate(objects[index], pos, transform.rotation);
-
+        pendingObject.name = objects[index].name;
     }
     public void ToggleGrid()
     {

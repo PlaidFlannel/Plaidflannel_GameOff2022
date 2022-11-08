@@ -3,12 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SelectedBuildingManager : MonoBehaviour
 {
     [SerializeField] private Material highlightSelectionMaterial;
     [SerializeField] private Material buildablesBuiltMaterial;
+
+    //[SerializeField] GameObject selectionIndicatorObject;
+
     private GameObject selectedObject;
+
 
     [Header("UI elements:")]
     public TextMeshProUGUI objNameTxt;
@@ -45,6 +50,9 @@ public class SelectedBuildingManager : MonoBehaviour
         if (selectedObject != null) Deselect();
         //add material to show selection
         //material = canBuild
+        //Vector3 wheresItAt = obj.transform.position;
+        //Instantiate(selectedObject, wheresItAt, Quaternion.identity);
+        //selectionIndicatorObject.GameObject.Instantiate<>
         obj.GetComponent<MeshRenderer>().material = highlightSelectionMaterial;
         objNameTxt.text = obj.name;
         selectedObject = obj;
