@@ -26,6 +26,7 @@ public class SelectedBuildingManager : MonoBehaviour
     public GameObject selectionUI;
     void Start()
     {
+        selectionUI.SetActive(false);
         buildingManager = GameObject.Find("BuildingManager").GetComponent<BuildingManager>();
     }
     void Update()
@@ -40,7 +41,7 @@ public class SelectedBuildingManager : MonoBehaviour
                 {
                     SelectIt(hit.collider.gameObject);
                 }
-                else { Deselect(); }
+                //else { Deselect(); }
             }
         }
 
@@ -53,35 +54,29 @@ public class SelectedBuildingManager : MonoBehaviour
     {
         if (obj == selectedObject) return;
         if (selectedObject != null) Deselect();
-        //goldToMove = obj.GetComponent<BuildingInfo>().goldCost;
-        //add material to show selection
-        //material = canBuild
+
+        //find the selected object, so the indicator can be moved over it and activated
         Vector3 wheresItAt = obj.transform.position;
         indicator.transform.position = new Vector3( wheresItAt.x, 3.5f, wheresItAt.z);
         indicator.SetActive(true);
-        //Instantiate(selectedObject, wheresItAt, Quaternion.identity);
-        //selectionIndicatorObject.GameObject.Instantiate<>
-        //indicator = obj.transform.GetChild<
-        //obj.GetComponent<MeshRenderer>().material = highlightSelectionMaterial;
+
+        //sets the name in the UI
         objNameTxt.text = obj.name;
-        //string gc = goldToMove.ToString();
-        //costToMove.text =  gc ;
+
         selectedObject = obj;
         selectionUI.SetActive(true);
 
     }
 
-    void Deselect()
+    public void Deselect()
     {
         if (selectedObject != null)
         {
-            //selectedObject.GetComponent<MeshRenderer>().material = buildablesBuiltMaterial;
             selectionUI.SetActive(false);
             indicator.SetActive(false);
             selectedObject = null;
         }
-        else { return; }
-
+        else { return; } //prevents error if clicking with nothing selected...
     }
     public void Delete()
     {
@@ -91,9 +86,9 @@ public class SelectedBuildingManager : MonoBehaviour
     }
     public void Move()
     {
+        //indicator.SetActive(false);
+        //selectionUI.SetActive(false);
         buildingManager.pendingObject = selectedObject;
         Deselect();
-        //Vector3 wheresItAt = selectedObject.transform.position;
-        //indicator.transform.position = new Vector3(wheresItAt.x, 1.5f, wheresItAt.z);
     }
 }

@@ -1735,22 +1735,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3489443457968762234, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3489443457968762234, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3489443457968762234, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 21.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3489443457968762234, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4524046884451674474, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1759,6 +1743,10 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1831667773}
+    - target: {fileID: 4524046884874371999, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4524046884953368931, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1857,7 +1845,7 @@ PrefabInstance:
       objectReference: {fileID: 1831667773}
     - target: {fileID: 4524046885339837203, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4524046885351641994, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1875,21 +1863,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1831667773}
-    - target: {fileID: 7891471919738351889, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
-      propertyPath: m_text
-      value: "Cost To Move =\n    Build Cost"
+    - target: {fileID: 6848058940989222517, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 700798379}
+    - target: {fileID: 6848058940989222517, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Deselect
       objectReference: {fileID: 0}
-    - target: {fileID: 7891471919738351889, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
-      propertyPath: m_fontSize
-      value: 22.05
+    - target: {fileID: 6848058940989222517, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SelectedBuildingManager, Assembly-CSharp
       objectReference: {fileID: 0}
-    - target: {fileID: 7891471919738351889, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
-      propertyPath: m_margin.z
-      value: 43.119385
-      objectReference: {fileID: 0}
-    - target: {fileID: 7891471919738351889, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
+    - target: {fileID: 6848058940989222517, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
