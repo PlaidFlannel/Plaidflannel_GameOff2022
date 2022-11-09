@@ -9,10 +9,13 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int maxHitPoints = 5;
-    [SerializeField] int damageFromArrow = 1;
-    [SerializeField] int damageFromCannonBall = 2;
+    //[SerializeField] int damageFromArrow = 1;
+    //[SerializeField] int damageFromCannonBall = 2;
+    private int damageFromArrow;
+    private int damageFromCannonBall;
     //[Tooltip("Adds amount to max hitHitPoints when enemy dies")]
     //[SerializeField] int difficultyRamp = 1;
+    BuildingManager buildingManager;
 
     int currentHitPoints = 0;
 
@@ -25,6 +28,9 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         Vector3 startLocation = transform.position;
+        buildingManager = FindObjectOfType<BuildingManager>();
+        damageFromArrow = buildingManager.damageFromBallista;
+        damageFromCannonBall = buildingManager.damageFromCannon;
     }
 
     void OnParticleCollision(GameObject other)
@@ -32,12 +38,12 @@ public class EnemyHealth : MonoBehaviour
         //Debug.Log("Particle hit" + name);
         if (other.gameObject.CompareTag("Arrow"))
         {
-            Debug.Log("Arrow Hit");
+            Debug.Log("Arrow Hit" + currentHitPoints);
             ProcessHit(damageFromArrow);
         }
         if (other.gameObject.CompareTag("CannonBall"))
         {
-            Debug.Log("CannonBall Hit");
+            Debug.Log("CannonBall Hit" + currentHitPoints);
             ProcessHit(damageFromCannonBall);
         }
     }

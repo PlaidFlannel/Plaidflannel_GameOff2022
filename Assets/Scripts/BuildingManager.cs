@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class BuildingManager : MonoBehaviour
 {
+    public int damageFromBallista = 1;
+    public int damageFromCannon = 2;
+
     public GameObject[] objects;
     public GameObject pendingObject;
 
@@ -22,13 +25,17 @@ public class BuildingManager : MonoBehaviour
 
     public BuildingTargetFinder buildingTargetFinder;
     public bool canPlace;
-
-
+    int goldCost;
+    Bank bank;
+    private void Start()
+    {
+        bank = FindObjectOfType<Bank>();
+    }
     void Update()
     {
         if(pendingObject != null)
         {
-            
+            goldCost = pendingObject.GetComponent<BuildingInfo>().goldCost;
             var toggleBuildableAction = pendingObject.GetComponent<CheckBuildPlacement>();
             toggleBuildableAction.isPlaced = false;
             UpdateMaterials();
@@ -44,6 +51,7 @@ public class BuildingManager : MonoBehaviour
             
             if (Input.GetMouseButtonDown(0) && canPlace)
             {
+                bank.Withdraw(goldCost);
                 toggleBuildableAction.isPlaced = true;
                 PlaceObject();
             }

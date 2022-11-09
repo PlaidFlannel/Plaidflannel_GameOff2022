@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 692246241480987228}
+  - component: {fileID: 5160581226616912514}
   - component: {fileID: 4089215684455154550}
   - component: {fileID: 8669397615418772675}
   - component: {fileID: 3512187502630006677}
@@ -16,7 +17,7 @@ GameObject:
   - component: {fileID: 6350311857140413739}
   - component: {fileID: 6200222747961735106}
   m_Layer: 8
-  m_Name: BuildingCannon
+  m_Name: Cannon
   m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2883723299633515499}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38,6 +39,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5160581226616912514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2883723299633515499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55a8ba75e2c49f54d947bb6c38eae74d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldCost: 20
+  buildingDescription: Slow firing shorter range.
+  damageAmount: 0
 --- !u!114 &4089215684455154550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +187,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8197771072499700370}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.206, z: 0.278}
+  m_LocalPosition: {x: 0, y: 0.252, z: 0.278}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4970,15 +4986,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dec4d5bb143bcb48b2e52c998928ad4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dec4d5bb143bcb48b2e52c998928ad4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dec4d5bb143bcb48b2e52c998928ad4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dec4d5bb143bcb48b2e52c998928ad4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4986,7 +5002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dec4d5bb143bcb48b2e52c998928ad4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dec4d5bb143bcb48b2e52c998928ad4, type: 3}
       propertyPath: m_LocalPosition.z
