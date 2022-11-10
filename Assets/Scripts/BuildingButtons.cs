@@ -15,7 +15,9 @@ public class BuildingButtons : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void Start()
     {
+
         buildingManager = FindObjectOfType<BuildingManager>();
+        if (buildingGameObject == null) { return; }
         buildingDecsription = buildingGameObject.GetComponent<BuildingInfo>().buildingDescription;
 
         goldCost = buildingGameObject.GetComponent<BuildingInfo>().goldCost;

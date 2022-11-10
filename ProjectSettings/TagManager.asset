@@ -9,6 +9,7 @@ TagManager:
   - Object
   - Arrow
   - CannonBall
+  - HealthUp
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,7 @@ public class BuildingTargetFinder : MonoBehaviour
     [SerializeField] Transform weapon;
     [SerializeField] ParticleSystem projectileParticles;
     [SerializeField] float range = 15f;
+    [SerializeField] bool firesAtEnemies = true;
     
     Transform target;
     private void Start()
@@ -23,7 +24,9 @@ public class BuildingTargetFinder : MonoBehaviour
         if (gameObject.GetComponent<CheckBuildPlacement>().isPlaced)
         {
             emission.enabled = true;
-            FindClosestTarget();
+            if (firesAtEnemies) { FindClosestEnemyTarget(); }
+            else { FindPlayerObject(); }
+            
             AimWeapon();
         }
         else
@@ -32,7 +35,22 @@ public class BuildingTargetFinder : MonoBehaviour
         }
 
     }
-    void FindClosestTarget()
+
+    private void FindPlayerObject()
+    {
+        PlayerObjectHealth playerObject = FindObjectOfType<PlayerObjectHealth>();
+        Transform closestTarget = null;
+        float maxDistance = Mathf.Infinity;
+        float targetDistance = Vector3.Distance(transform.position, playerObject.transform.position);
+        if (targetDistance < maxDistance)
+        {
+            closestTarget = playerObject.transform;
+            maxDistance = targetDistance;
+        }
+        target = closestTarget;
+    }
+
+    void FindClosestEnemyTarget()
     {
         EnemyAI[] enemies = FindObjectsOfType<EnemyAI>();
         Transform closestTarget = null;

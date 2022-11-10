@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6734185153080578599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6734185153080578597}
+  - component: {fileID: 6734185153080578598}
+  m_Layer: 0
+  m_Name: BuildingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6734185153080578597
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6734185153080578599}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.22114405, y: 5.586795, z: -12.206461}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6734185153080578598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6734185153080578599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fbe77a03e61e854e8b07d8ae8f4a270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageFromBallista: 1
+  damageFromCannon: 2
+  objects:
+  - {fileID: 2883723299633515499, guid: f64ec91ab022e6f4790dfb692fdf75f4, type: 3}
+  - {fileID: 2883723299633515499, guid: 894b3d0af9518c74ba9e05bc693dc28a, type: 3}
+  - {fileID: 2883723299633515499, guid: 7a922922fcf194340bb92fef06b9b113, type: 3}
+  pendingObject: {fileID: 0}
+  materials:
+  - {fileID: 2100000, guid: 1792078c6c110284fa086277d30ef602, type: 2}
+  - {fileID: 2100000, guid: 7aff2efd3fcf9d3429f9430f5b7845a3, type: 2}
+  - {fileID: 2100000, guid: 3b57345f7164f7a4d8cefa3fbcff2ac9, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  rotateAmount: 45
+  gridSize: 10
+  gridToggle: {fileID: 0}
+  buildingTargetFinder: {fileID: 0}
+  canPlace: 1

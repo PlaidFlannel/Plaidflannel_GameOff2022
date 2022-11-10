@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goldCost: 20
-  buildingDescription: Slow firing shorter range.
+  buildingDescription: Slow firing shorter range - more damage.
   damageAmount: 0
 --- !u!114 &4089215684455154550
 MonoBehaviour:
@@ -69,6 +69,7 @@ MonoBehaviour:
   weapon: {fileID: 1360592256001674746}
   projectileParticles: {fileID: 2367889272801164788}
   range: 10
+  firesAtEnemies: 1
 --- !u!114 &8669397615418772675
 MonoBehaviour:
   m_ObjectHideFlags: 0
