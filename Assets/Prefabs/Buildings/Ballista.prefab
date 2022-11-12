@@ -4831,7 +4831,7 @@ GameObject:
   - component: {fileID: 4593696805148681431}
   m_Layer: 8
   m_Name: Ballista
-  m_TagString: Object
+  m_TagString: UnbuiltObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4882,7 +4882,6 @@ MonoBehaviour:
   weapon: {fileID: 9052655111823568650}
   projectileParticles: {fileID: 6661949421055544696}
   range: 15
-  firesAtEnemies: 1
   firingAudio: {fileID: 8300000, guid: b54a9a16a6e5bc64f9458aa6586ed775, type: 3}
   soundDelay: 0
 --- !u!114 &8669397615418772675

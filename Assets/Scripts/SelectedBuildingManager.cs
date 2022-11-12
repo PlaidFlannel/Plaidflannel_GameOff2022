@@ -62,30 +62,31 @@ public class SelectedBuildingManager : MonoBehaviour
     }
     private void SelectIt(GameObject obj)
     {
-        var checkIfPlaced = obj.GetComponent<CheckBuildPlacement>();
+        /*var checkIfPlaced = obj.GetComponent<CheckBuildPlacement>();
         Debug.Log("checkifplaced" + checkIfPlaced.isPlaced);
         //toggleBuildableAction.isPlaced = false;
         //if (obj.isPlaced == false) ;
         if (checkIfPlaced == false) { Debug.Log("Returning now"); return; }
         if (checkIfPlaced == true)
         {
-            if (obj == selectedObject) return;
 
-            if (selectedObject != null) Deselect();
+        }*/
+        if (obj == selectedObject) return;
 
-            //find the selected object, so the indicator can be moved over it and activated
-            Vector3 wheresItAt = obj.transform.position;
-            indicator.transform.position = new Vector3(wheresItAt.x, 3.5f, wheresItAt.z);
-            indicator.SetActive(true);
+        if (selectedObject != null) Deselect();
 
-            //sets the name in the UI
-            objNameTxt.text = obj.name;
+        //find the selected object, so the indicator can be moved over it and activated
+        Vector3 wheresItAt = obj.transform.position;
+        indicator.transform.position = new Vector3(wheresItAt.x, 3.5f, wheresItAt.z);
+        indicator.SetActive(true);
+
+        //sets the name in the UI
+        objNameTxt.text = obj.name;
 
 
-            selectedObject = obj;
-            selectionUI.SetActive(true);
-            goldCost = obj.GetComponent<BuildingInfo>().goldCost;
-        }
+        selectedObject = obj;
+        selectionUI.SetActive(true);
+        goldCost = obj.GetComponent<BuildingInfo>().goldCost;
 
     }
 

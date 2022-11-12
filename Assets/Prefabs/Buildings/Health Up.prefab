@@ -9643,7 +9643,7 @@ GameObject:
   - component: {fileID: -3925904021939519828}
   m_Layer: 8
   m_Name: Health Up
-  m_TagString: Object
+  m_TagString: UnbuiltObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

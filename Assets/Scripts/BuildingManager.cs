@@ -82,6 +82,7 @@ public class BuildingManager : MonoBehaviour
                         {
                             bank.Withdraw(goldCost);
                             toggleBuildableAction.isPlaced = true;
+
                             PlaceObject();
                         }
                         //else { Debug.Log("can't afford this"); }
@@ -97,6 +98,7 @@ public class BuildingManager : MonoBehaviour
     }
     public void PlaceObject()
     {
+        pendingObject.gameObject.tag = "Object";
         pendingObject.GetComponent<MeshRenderer>().material = materials[2];
         pendingObject = null;
     }

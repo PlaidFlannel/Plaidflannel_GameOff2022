@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -8279684987092556618}
   m_Layer: 8
   m_Name: Cannon
-  m_TagString: Object
+  m_TagString: UnbuiltObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,7 +70,6 @@ MonoBehaviour:
   weapon: {fileID: 1360592256001674746}
   projectileParticles: {fileID: 2367889272801164788}
   range: 10
-  firesAtEnemies: 1
   firingAudio: {fileID: 8300000, guid: 6fc94fad1b9975a43983425ee7bb7fb2, type: 3}
   soundDelay: 0
 --- !u!114 &8669397615418772675

@@ -11,6 +11,8 @@ TagManager:
   - CannonBall
   - HealthUp
   - Coin
+  - BuildingTile
+  - UnbuiltObject
   layers:
   - Default
   - TransparentFX
