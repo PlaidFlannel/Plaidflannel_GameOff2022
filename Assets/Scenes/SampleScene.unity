@@ -852,6 +852,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1132149553}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1400552330 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4524046885374325777, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
+  m_PrefabInstance: {fileID: 4524046884411446189}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1491505263
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,6 +1175,10 @@ PrefabInstance:
       value: SelectedBuildingManager
       objectReference: {fileID: 0}
     - target: {fileID: 1712287061549194555, guid: 441fac6f850151d4f93e578474a538ea, type: 3}
+      propertyPath: moveButton
+      value: 
+      objectReference: {fileID: 1400552330}
+    - target: {fileID: 1712287061549194555, guid: 441fac6f850151d4f93e578474a538ea, type: 3}
       propertyPath: objNameTxt
       value: 
       objectReference: {fileID: 201395807}
@@ -1177,6 +1186,10 @@ PrefabInstance:
       propertyPath: selectionUI
       value: 
       objectReference: {fileID: 1063919806}
+    - target: {fileID: 1712287061549194555, guid: 441fac6f850151d4f93e578474a538ea, type: 3}
+      propertyPath: moveItButton
+      value: 
+      objectReference: {fileID: 1400552330}
     - target: {fileID: 1712287061549194556, guid: 441fac6f850151d4f93e578474a538ea, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1356,6 +1369,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin
       objectReference: {fileID: 0}
+    - target: {fileID: 3164779469316565662, guid: 77da6a5651db9b64abf6256327e8a98e, type: 3}
+      propertyPath: coinValue
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3187152241205080100, guid: 77da6a5651db9b64abf6256327e8a98e, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -1466,20 +1483,8 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4352724295346267009, guid: ec07259da0b845141bd51eef8715b8b4, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 37d130baf68e19841b6aeeb52253a82f, type: 2}
-    - target: {fileID: 4352724295346267010, guid: ec07259da0b845141bd51eef8715b8b4, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 4fb6af25d1e06a14b99afd88a987b058, type: 2}
     - target: {fileID: 4352724295346267015, guid: ec07259da0b845141bd51eef8715b8b4, type: 3}
       propertyPath: m_Name
-      value: Ball
-      objectReference: {fileID: 0}
-    - target: {fileID: 4352724295346267015, guid: ec07259da0b845141bd51eef8715b8b4, type: 3}
-      propertyPath: m_TagString
       value: Ball
       objectReference: {fileID: 0}
     - target: {fileID: 4352724295346267036, guid: ec07259da0b845141bd51eef8715b8b4, type: 3}
@@ -1525,10 +1530,6 @@ PrefabInstance:
     - target: {fileID: 4352724295346267036, guid: ec07259da0b845141bd51eef8715b8b4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4352724295346267038, guid: ec07259da0b845141bd51eef8715b8b4, type: 3}
-      propertyPath: health
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4352724295346267038, guid: ec07259da0b845141bd51eef8715b8b4, type: 3}
       propertyPath: healthDisplay
@@ -1723,6 +1724,10 @@ PrefabInstance:
     - target: {fileID: 5820812705287834939, guid: 655c6f0dfbfbbf24b9c21e23ad6d7855, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190153874675413316, guid: 655c6f0dfbfbbf24b9c21e23ad6d7855, type: 3}
+      propertyPath: maxHitPoints
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 655c6f0dfbfbbf24b9c21e23ad6d7855, type: 3}
@@ -2044,6 +2049,10 @@ PrefabInstance:
       propertyPath: gridToggle
       value: 
       objectReference: {fileID: 615043123}
+    - target: {fileID: 6734185153080578598, guid: 815b6e758f697dd49afd1cea5dceed76, type: 3}
+      propertyPath: objects.Array.data[2]
+      value: 
+      objectReference: {fileID: 2883723299633515499, guid: 7a922922fcf194340bb92fef06b9b113, type: 3}
     - target: {fileID: 6734185153080578599, guid: 815b6e758f697dd49afd1cea5dceed76, type: 3}
       propertyPath: m_Name
       value: BuildingManager

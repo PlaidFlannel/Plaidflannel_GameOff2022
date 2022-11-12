@@ -675,7 +675,7 @@ GameObject:
   - component: {fileID: 5297258055787734183}
   - component: {fileID: 7891471919738351889}
   m_Layer: 5
-  m_Name: MoveCost
+  m_Name: MoveCostText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3158,6 +3158,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4524046885374325776}
+  - component: {fileID: 1400552331}
   - component: {fileID: 4524046885374325869}
   - component: {fileID: 4524046885374325778}
   - component: {fileID: 4524046885374325779}
@@ -3189,6 +3190,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -40.6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1400552331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4524046885374325777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a7e90b136fb5947a2b8f732df1a764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isClickable: 0
 --- !u!222 &4524046885374325869
 CanvasRenderer:
   m_ObjectHideFlags: 0

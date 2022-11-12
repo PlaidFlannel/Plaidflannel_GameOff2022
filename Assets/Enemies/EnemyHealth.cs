@@ -9,17 +9,23 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int maxHitPoints = 5;
-    //[SerializeField] int damageFromArrow = 1;
-    //[SerializeField] int damageFromCannonBall = 2;
+    [SerializeField] AudioClip takingDamage;
+    [SerializeField] Material normalMaterial;
+    [SerializeField] Material damageMaterial;
+    [SerializeField] MeshRenderer[] bodyParts;
+
+    [SerializeField] GameObject coinDrop;
+
+    private float changeColorTime = .5f;
+
     private int damageFromArrow;
     private int damageFromCannonBall;
-    //[Tooltip("Adds amount to max hitHitPoints when enemy dies")]
-    //[SerializeField] int difficultyRamp = 1;
+
     BuildingManager buildingManager;
 
-    int currentHitPoints = 0;
+    [SerializeField] int currentHitPoints = 0;
 
-
+    AudioSource audioSource;
 
     void OnEnable()
     {
@@ -27,7 +33,8 @@ public class EnemyHealth : MonoBehaviour
     }
     void Start()
     {
-        Vector3 startLocation = transform.position;
+        audioSource = GetComponent<AudioSource>();
+        //Vector3 startLocation = transform.position;
         buildingManager = FindObjectOfType<BuildingManager>();
         damageFromArrow = buildingManager.damageFromBallista;
         damageFromCannonBall = buildingManager.damageFromCannon;
@@ -38,24 +45,53 @@ public class EnemyHealth : MonoBehaviour
         //Debug.Log("Particle hit" + name);
         if (other.gameObject.CompareTag("Arrow"))
         {
-            Debug.Log("Arrow Hit" + currentHitPoints);
+            StartCoroutine(ChangeColor());
+            //gameObject.GetComponentInChildren<MeshRenderer>().material = damageMaterial;
+            //Debug.Log("Arrow Hit" + currentHitPoints);
+            if (!audioSource.isPlaying)
+            {
+                
+                audioSource.PlayOneShot(takingDamage);
+            }
             ProcessHit(damageFromArrow);
         }
         if (other.gameObject.CompareTag("CannonBall"))
         {
-            Debug.Log("CannonBall Hit" + currentHitPoints);
+            StartCoroutine(ChangeColor());
+            //Debug.Log("CannonBall Hit" + currentHitPoints);
             ProcessHit(damageFromCannonBall);
+            if (audioSource.enabled && !audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(takingDamage);
+            }
         }
+
     }
 
+    IEnumerator ChangeColor()
+    {
+        foreach(MeshRenderer i in bodyParts)
+        {
+            i.material = damageMaterial;
+        }
+        //gameObject.GetComponentInChildren<MeshRenderer>().material = damageMaterial;
+        yield return new WaitForSeconds(changeColorTime);
+        foreach (MeshRenderer i in bodyParts)
+        {
+            i.material = normalMaterial;
+        }
+        //gameObject.GetComponentInChildren<MeshRenderer>().material = normalMaterial;
+    }
 
 
     void ProcessHit(int damage)
     {
         currentHitPoints -= damage;
-
+        
         if (currentHitPoints <= 0)
         {
+            audioSource.Stop();
+            Instantiate(coinDrop, transform.position, coinDrop.transform.rotation);
             gameObject.SetActive(false);
             //enemy.RewardGold();
             //maxHitPoints += difficultyRamp;

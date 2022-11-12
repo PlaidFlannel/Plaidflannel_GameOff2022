@@ -22,6 +22,9 @@ public class BuildingManager : MonoBehaviour
     public float gridSize; //determines grid size which objects will snap to
     bool gridSnapOn = true;
     [SerializeField] private Toggle gridToggle;
+    [SerializeField] GameObject buildUI;
+
+    BuildingButtons[] buildingButtons;
 
     public BuildingTargetFinder buildingTargetFinder;
     public bool canPlace;
@@ -29,12 +32,30 @@ public class BuildingManager : MonoBehaviour
     Bank bank;
     private void Start()
     {
+        buildingButtons = FindObjectsOfType<BuildingButtons>();
         bank = FindObjectOfType<Bank>();
     }
     void Update()
     {
         if(pendingObject != null)
         {
+
+            foreach (BuildingButtons b in buildingButtons)
+            {
+                b.ButtonToggle();
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                pendingObject.SetActive(false);
+                Debug.Log("Right click");
+                pendingObject = null;
+                foreach (BuildingButtons b in buildingButtons)
+                {
+                    b.ButtonToggle();
+                }
+                return;
+
+            }
             goldCost = pendingObject.GetComponent<BuildingInfo>().goldCost;
             var toggleBuildableAction = pendingObject.GetComponent<CheckBuildPlacement>();
             toggleBuildableAction.isPlaced = false;
@@ -48,13 +69,26 @@ public class BuildingManager : MonoBehaviour
                     );
             }
             else { pendingObject.transform.position = pos; }
-            
-            if (Input.GetMouseButtonDown(0) && canPlace)
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 1000))
             {
-                bank.Withdraw(goldCost);
-                toggleBuildableAction.isPlaced = true;
-                PlaceObject();
+                if (hit.collider.gameObject.CompareTag("BuildingTile"))
+                {
+                    if (Input.GetMouseButtonDown(0) && canPlace)
+                    {
+
+                        if (goldCost < bank.CurrentBalance)
+                        {
+                            bank.Withdraw(goldCost);
+                            toggleBuildableAction.isPlaced = true;
+                            PlaceObject();
+                        }
+                        //else { Debug.Log("can't afford this"); }
+                    }
+                }
             }
+
             if (Input.GetKeyDown(KeyCode.R))
             {
                 RotateObject();

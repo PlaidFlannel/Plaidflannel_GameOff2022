@@ -19,15 +19,21 @@ public class SelectedBuildingManager : MonoBehaviour
     [Header("UI elements:")]
     public TextMeshProUGUI objNameTxt;
     public TextMeshProUGUI costToMove;
-    int goldToMove;
 
+    [SerializeField] GameObject moveButton;
     private BuildingManager buildingManager;
-
+    private Bank bank;
+    
     public GameObject selectionUI;
+
+    float goldCost = 0;
     void Start()
     {
+        
         selectionUI.SetActive(false);
         buildingManager = GameObject.Find("BuildingManager").GetComponent<BuildingManager>();
+        bank = FindObjectOfType<Bank>();
+        
     }
     void Update()
     {
@@ -49,22 +55,37 @@ public class SelectedBuildingManager : MonoBehaviour
         {
             Deselect();
         }
+        
+        if (goldCost > bank.CurrentBalance) { moveButton.GetComponent<IsClickable>().isClickable = false; }
+        else { moveButton.GetComponent<IsClickable>().isClickable = true; }
+
     }
     private void SelectIt(GameObject obj)
     {
-        if (obj == selectedObject) return;
-        if (selectedObject != null) Deselect();
+        var checkIfPlaced = obj.GetComponent<CheckBuildPlacement>();
+        Debug.Log("checkifplaced" + checkIfPlaced.isPlaced);
+        //toggleBuildableAction.isPlaced = false;
+        //if (obj.isPlaced == false) ;
+        if (checkIfPlaced == false) { Debug.Log("Returning now"); return; }
+        if (checkIfPlaced == true)
+        {
+            if (obj == selectedObject) return;
 
-        //find the selected object, so the indicator can be moved over it and activated
-        Vector3 wheresItAt = obj.transform.position;
-        indicator.transform.position = new Vector3( wheresItAt.x, 3.5f, wheresItAt.z);
-        indicator.SetActive(true);
+            if (selectedObject != null) Deselect();
 
-        //sets the name in the UI
-        objNameTxt.text = obj.name;
+            //find the selected object, so the indicator can be moved over it and activated
+            Vector3 wheresItAt = obj.transform.position;
+            indicator.transform.position = new Vector3(wheresItAt.x, 3.5f, wheresItAt.z);
+            indicator.SetActive(true);
 
-        selectedObject = obj;
-        selectionUI.SetActive(true);
+            //sets the name in the UI
+            objNameTxt.text = obj.name;
+
+
+            selectedObject = obj;
+            selectionUI.SetActive(true);
+            goldCost = obj.GetComponent<BuildingInfo>().goldCost;
+        }
 
     }
 

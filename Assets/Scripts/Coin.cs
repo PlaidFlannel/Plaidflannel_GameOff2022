@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    //add coin  value to bank when picked up
-    // destroy coin on pickup
-    //spin coin slowly?
     //play sound on pickup
+    public int coinValue = 1;
+    private float spinSpeed = 1.0f;
+    AudioClip audioClip;
     void Start()
     {
         
@@ -16,6 +16,10 @@ public class Coin : MonoBehaviour
     
     void Update()
     {
-        
+        if (gameObject.activeSelf)
+        {
+            //Debug.Log("SPIN");
+            transform.Rotate(new Vector3(0.0f, 0.0f, 90.0f), spinSpeed, Space.Self);
+        }
     }
 }

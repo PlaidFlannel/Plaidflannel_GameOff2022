@@ -5,19 +5,25 @@ using TMPro;
 
 public class PlayerObjectHealth : MonoBehaviour
 {
-    [SerializeField] float health = 100f;
+    public float health = 100f;
+    public float maxHealth = 150f;
     [SerializeField] TextMeshProUGUI healthDisplay;
     [SerializeField] float healingItemHitValue = 15f;
 
+    [SerializeField] AudioClip healthIncoming;
+    [SerializeField] AudioClip takingDamage;
+    AudioSource audioSource;
     
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         healthDisplay.text = "Health: " + health.ToString() + "%";
         //healthDisplay = GetComponent<TextMeshProUGUI>();
     }
     public void TakeDamage(float damage)
     {
         health -= damage;
+        audioSource.PlayOneShot(takingDamage);
         healthDisplay.text = "Health: " + health.ToString() + "%";
         if (health <= 0)
         {
@@ -31,13 +37,18 @@ public class PlayerObjectHealth : MonoBehaviour
         //Debug.Log("Particle hit" + name);
         if (other.gameObject.CompareTag("HealthUp"))
         {
-            Debug.Log("HealthUp" + health);
+            audioSource.PlayOneShot(healthIncoming);
+            //Debug.Log("HealthUp" + health);
             ProcessHealthUpHit(healingItemHitValue);
         }
     }
     void ProcessHealthUpHit(float healingValue)
     {
-        health += healingValue;
+        if (health < maxHealth)
+        {
+            health += healingValue;
+            healthDisplay.text = "Health: " + health.ToString() + "%";
+        }
 
     }
 }

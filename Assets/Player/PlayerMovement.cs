@@ -19,6 +19,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpHeight = 3f;
     private float velocityY;
 
+    [SerializeField] AudioClip coinPickup;
+
+    AudioSource audioSource;    
+    Bank bank;
+
     void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -27,7 +32,8 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
+        bank = FindObjectOfType<Bank>();
     }
     void Update()
     {
@@ -64,5 +70,17 @@ public class PlayerMovement : MonoBehaviour
         }
         velocityY -= gravity * gravityMultiplier * Time.deltaTime;
         controller.Move(Vector3.up * velocityY * Time.deltaTime);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Coin"))
+        {
+            audioSource.PlayOneShot(coinPickup);
+            int depositValue = other.gameObject.GetComponent<Coin>().coinValue;
+            Debug.Log("got coin" + depositValue);
+            Destroy(other.gameObject);
+            bank.Deposit(depositValue);
+        }
+
     }
 }
