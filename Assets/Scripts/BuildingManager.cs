@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,6 +34,7 @@ public class BuildingManager : MonoBehaviour
     Bank bank;
     private void Start()
     {
+        //buildUI.SetActive(false);
         buildingButtons = FindObjectsOfType<BuildingButtons>();
         bank = FindObjectOfType<Bank>();
     }
@@ -39,7 +42,6 @@ public class BuildingManager : MonoBehaviour
     {
         if(pendingObject != null)
         {
-
             foreach (BuildingButtons b in buildingButtons)
             {
                 b.ButtonToggle();
@@ -63,9 +65,9 @@ public class BuildingManager : MonoBehaviour
             if (gridSnapOn)
             {
                 pendingObject.transform.position = new Vector3(
-                    RoundToNearestGrid(pos.x),
-                    RoundToNearestGrid(pos.y),
-                    RoundToNearestGrid(pos.z)
+                    RoundToNearestGrid(pos.x- 1),
+                    RoundToNearestGrid(pos.y- 1),
+                    RoundToNearestGrid(pos.z - 1)
                     );
             }
             else { pendingObject.transform.position = pos; }
@@ -73,17 +75,24 @@ public class BuildingManager : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 1000))
             {
+                
                 if (hit.collider.gameObject.CompareTag("BuildingTile"))
                 {
+                    //Vector3 wheresItAt = Input.mousePosition;
+                    //Debug.Log(wheresItAt);
+                    ////buildUI.transform.position = new Vector2(wheresItAt.x, wheresItAt.y);
+                    //buildUI.SetActive(true);
+                    //BuildingPlatform platform = hit.collider.gameObject.GetComponent<BuildingPlatform>();
                     if (Input.GetMouseButtonDown(0) && canPlace)
                     {
 
-                        if (goldCost < bank.CurrentBalance)
+                        if (goldCost < bank.CurrentBalance + 1)
                         {
                             bank.Withdraw(goldCost);
                             toggleBuildableAction.isPlaced = true;
-
+                            hit.collider.gameObject.tag = "OccupiedBuildingTile";
                             PlaceObject();
+                            //platform.isOccupied = true;
                         }
                         //else { Debug.Log("can't afford this"); }
                     }
@@ -98,6 +107,7 @@ public class BuildingManager : MonoBehaviour
     }
     public void PlaceObject()
     {
+        //buildUI.SetActive(false);
         pendingObject.gameObject.tag = "Object";
         pendingObject.GetComponent<MeshRenderer>().material = materials[2];
         pendingObject = null;

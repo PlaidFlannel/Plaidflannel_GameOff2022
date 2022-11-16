@@ -7,12 +7,17 @@ public class Goal : MonoBehaviour
     
     [SerializeField] GameObject ball;
     public bool goalReached = false;
-
+    GameManager gameManager;
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == ball)
         {
-            Debug.Log("reached goal");
+            gameManager.goal = true;
+            //Debug.Log("reached goal");
             goalReached = true;
         }
     }

@@ -22,5 +22,7 @@ public class UILevelComplete : MonoBehaviour
     void Update()
     {
         finalHealthText.text = "Health remaining: "+ scoreKeeper.GetHealth().ToString("0.0") + "%";
+        finalEnemyText.text = "Enemies defeated: " + scoreKeeper.GetEnemiesDefeated();
+        finalGoldText.text = "Gold remaining: " + scoreKeeper.GetGold();
     }
 }

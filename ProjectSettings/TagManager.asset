@@ -13,6 +13,7 @@ TagManager:
   - Coin
   - BuildingTile
   - UnbuiltObject
+  - OccupiedBuildingTile
   layers:
   - Default
   - TransparentFX

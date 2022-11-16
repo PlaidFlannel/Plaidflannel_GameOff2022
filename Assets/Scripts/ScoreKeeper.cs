@@ -9,6 +9,7 @@ public class ScoreKeeper : MonoBehaviour
     public float ballHealthFinal = 100f; //remaining percent
     private int enemiesDefeated;
 
+
     static ScoreKeeper instance;
     void Awake()
     {

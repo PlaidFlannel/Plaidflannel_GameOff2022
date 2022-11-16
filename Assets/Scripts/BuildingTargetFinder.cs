@@ -17,16 +17,22 @@ public class BuildingTargetFinder : MonoBehaviour
 
     AudioSource audioSource;
     Transform target;
+    EnemyAI[] enemies;
+    Quaternion startRotation;
     private void Start()
     {
+        startRotation = transform.rotation;
+        enemies = FindObjectsOfType<EnemyAI>();
         audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
         var emission = projectileParticles.emission;
+
         if (gameObject.GetComponent<CheckBuildPlacement>().isPlaced)
         {
             emission.enabled = true;
+
             FindClosestEnemyTarget(); 
             AimWeapon();
         }
@@ -61,8 +67,11 @@ public class BuildingTargetFinder : MonoBehaviour
     void FindClosestEnemyTarget()
     {
         EnemyAI[] enemies = FindObjectsOfType<EnemyAI>();
+        //Debug.Log(enemies);
+        //if (enemies == null) { return; }
         Transform closestTarget = null;
         float maxDistance = Mathf.Infinity;
+
 
         foreach (EnemyAI enemy in enemies)
         {
@@ -73,20 +82,25 @@ public class BuildingTargetFinder : MonoBehaviour
                 maxDistance = targetDistance;
             }
         }
+        
         target = closestTarget;
     }
     void AimWeapon()
     {
+        
+
         float targetDistance = Vector3.Distance(transform.position, target.position);
 
-        weapon.LookAt(target);
- 
+
+
         if (targetDistance < range)
         {
+            weapon.LookAt(target);
             Attack(true);
         }
         else
         {
+            weapon.rotation = startRotation;
             Attack(false);
         }
 

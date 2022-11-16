@@ -27,12 +27,17 @@ public class EnemyHealth : MonoBehaviour
 
     AudioSource audioSource;
 
+    public bool isDead = false;
+    ScoreKeeper scoreKeeper;
+
     void OnEnable()
     {
         currentHitPoints = maxHitPoints;
     }
     void Start()
     {
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
+
         audioSource = GetComponent<AudioSource>();
         //Vector3 startLocation = transform.position;
         buildingManager = FindObjectOfType<BuildingManager>();
@@ -50,7 +55,6 @@ public class EnemyHealth : MonoBehaviour
             //Debug.Log("Arrow Hit" + currentHitPoints);
             if (!audioSource.isPlaying)
             {
-                
                 audioSource.PlayOneShot(takingDamage);
             }
             ProcessHit(damageFromArrow);
@@ -90,6 +94,8 @@ public class EnemyHealth : MonoBehaviour
         
         if (currentHitPoints <= 0)
         {
+            scoreKeeper.ModifyEnemiesDefeated(1);
+            isDead = true;
             audioSource.Stop();
             Instantiate(coinDrop, transform.position, coinDrop.transform.rotation);
             gameObject.SetActive(false);

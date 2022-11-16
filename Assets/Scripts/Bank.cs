@@ -16,6 +16,7 @@ public class Bank : MonoBehaviour
         currentBalance = startingBalance;
         UpdateDisplay();
     }
+    //public void Ballance() { }
     public void Deposit(int amount)
     {
         currentBalance += Mathf.Abs(amount);
