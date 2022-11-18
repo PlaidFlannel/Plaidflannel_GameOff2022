@@ -6,7 +6,7 @@ public class ScoreKeeper : MonoBehaviour
 {
     private int score;
     private int goldTotal;
-    public float ballHealthFinal = 100f; //remaining percent
+    public float ballHealthFinal; //remaining percent
     private int enemiesDefeated;
 
 
@@ -61,12 +61,12 @@ public class ScoreKeeper : MonoBehaviour
     {
         enemiesDefeated += value;
         Mathf.Clamp(enemiesDefeated, 0, int.MaxValue);
-        Debug.Log(enemiesDefeated);
+        Debug.Log("enemies defeated: " + enemiesDefeated);
     }
     public void ModifyHealth(float value)
     {
         ballHealthFinal += value;
-        Mathf.Clamp(ballHealthFinal, 0, float.MaxValue);
+        //Mathf.Clamp(ballHealthFinal, 0, float.MaxValue);
         Debug.Log(ballHealthFinal);
     }
 

@@ -4,10 +4,11 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI gameOverText;
-    [SerializeField] GameObject levelCompletedMenu;
+    [SerializeField] GameObject levelMenu;
     [SerializeField] GameObject bottomUI;
    // EnemyAI enemyAI;
     //GameObject enemy;
@@ -25,21 +26,27 @@ public class GameManager : MonoBehaviour
 
     static public GameManager instance;
     ScoreKeeper scoreKeeper;
+    LevelCompleteMenu levelCompleteMenu;
 
     private void Awake()
     {
         ManageSingleton();
+        levelCompleteMenu = FindObjectOfType<LevelCompleteMenu>();
+        Debug.Log(levelCompleteMenu);
+        levelMenu = levelCompleteMenu.GetComponent<GameObject>();
+        levelMenu.gameObject.SetActive(false);
     }
     void Start()
     {
+
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
         bank = FindObjectOfType<Bank>();
-        levelCompletedMenu.gameObject.SetActive(false);
+        
         playerMovement = FindObjectOfType<PlayerMovement>();
         allEnemies = GameObject.FindGameObjectsWithTag("Enemies");
         bottomUI.gameObject.SetActive(true);
         gameOverText.gameObject.SetActive(false);
-        levelCompletedMenu.gameObject.SetActive(false);
+        levelMenu.gameObject.SetActive(false);
         //goal = FindObjectOfType<Goal>().goalReached;
         
     }
@@ -75,7 +82,7 @@ public class GameManager : MonoBehaviour
 
         }
 
-        levelCompletedMenu.gameObject.SetActive(true);
+        levelMenu.gameObject.SetActive(true);
     }
 
     void ManageSingleton()
@@ -94,5 +101,18 @@ public class GameManager : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void ResetGameSession()
+    {
+        //currentScene = 
+        FindObjectOfType<ScenePersist>().ResetScenePersist();
+        SceneManager.LoadScene(0);
+        Destroy(gameObject);
+    }
+    public void ReloadLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
     }
 }

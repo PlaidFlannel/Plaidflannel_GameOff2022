@@ -12,13 +12,21 @@ public class PlayerObjectHealth : MonoBehaviour
 
     [SerializeField] AudioClip healthIncoming;
     [SerializeField] AudioClip takingDamage;
+    //[SerializeField] AudioClip rolling;
+
     AudioSource audioSource;
+
     
     private void Start()
     {
+
         audioSource = GetComponent<AudioSource>();
         healthDisplay.text = "Health: " + health.ToString() + "%";
-        //healthDisplay = GetComponent<TextMeshProUGUI>();
+
+    }
+    private void Update()
+    {
+
     }
     public void TakeDamage(float damage)
     {

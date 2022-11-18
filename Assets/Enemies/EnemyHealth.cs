@@ -22,6 +22,8 @@ public class EnemyHealth : MonoBehaviour
     private int damageFromCannonBall;
 
     BuildingManager buildingManager;
+    //BuildingTargetFinder buildingTargetFinder;
+    //BuildingTargetFinder[] buildingTargetFinders;
 
     [SerializeField] int currentHitPoints = 0;
 
@@ -33,26 +35,22 @@ public class EnemyHealth : MonoBehaviour
     void OnEnable()
     {
         currentHitPoints = maxHitPoints;
+        buildingManager = FindObjectOfType<BuildingManager>();
     }
     void Start()
     {
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
 
         audioSource = GetComponent<AudioSource>();
-        //Vector3 startLocation = transform.position;
-        buildingManager = FindObjectOfType<BuildingManager>();
         damageFromArrow = buildingManager.damageFromBallista;
         damageFromCannonBall = buildingManager.damageFromCannon;
     }
 
     void OnParticleCollision(GameObject other)
     {
-        //Debug.Log("Particle hit" + name);
         if (other.gameObject.CompareTag("Arrow"))
         {
             StartCoroutine(ChangeColor());
-            //gameObject.GetComponentInChildren<MeshRenderer>().material = damageMaterial;
-            //Debug.Log("Arrow Hit" + currentHitPoints);
             if (!audioSource.isPlaying)
             {
                 audioSource.PlayOneShot(takingDamage);
@@ -62,7 +60,6 @@ public class EnemyHealth : MonoBehaviour
         if (other.gameObject.CompareTag("CannonBall"))
         {
             StartCoroutine(ChangeColor());
-            //Debug.Log("CannonBall Hit" + currentHitPoints);
             ProcessHit(damageFromCannonBall);
             if (audioSource.enabled && !audioSource.isPlaying)
             {
@@ -78,13 +75,11 @@ public class EnemyHealth : MonoBehaviour
         {
             i.material = damageMaterial;
         }
-        //gameObject.GetComponentInChildren<MeshRenderer>().material = damageMaterial;
         yield return new WaitForSeconds(changeColorTime);
         foreach (MeshRenderer i in bodyParts)
         {
             i.material = normalMaterial;
         }
-        //gameObject.GetComponentInChildren<MeshRenderer>().material = normalMaterial;
     }
 
 

@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private float velocityY;
 
     [SerializeField] AudioClip coinPickup;
+    [SerializeField] AudioClip hitBall;
 
     AudioSource audioSource;    
     Bank bank;
@@ -77,10 +78,22 @@ public class PlayerMovement : MonoBehaviour
         {
             audioSource.PlayOneShot(coinPickup);
             int depositValue = other.gameObject.GetComponent<Coin>().coinValue;
-            Debug.Log("got coin" + depositValue);
+            //Debug.Log("got coin" + depositValue);
             Destroy(other.gameObject);
             bank.Deposit(depositValue);
         }
-
+        if (other.CompareTag("Ball"))
+        {
+            Debug.Log("Hit ball");
+            audioSource.PlayOneShot(hitBall);
+        }
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ball"))
+        {
+            Debug.Log("Hit ball");
+            audioSource.PlayOneShot(hitBall);
+        }
     }
 }

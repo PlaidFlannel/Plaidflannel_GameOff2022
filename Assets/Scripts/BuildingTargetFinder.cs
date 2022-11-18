@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Android;
 
 
 public class BuildingTargetFinder : MonoBehaviour
 {
+    //there is an error when all enemies are defeated, cant fix for now, so have an inactive enemy somewhere on the map, so there is always at least 1 EnemyAI.
     [SerializeField] Transform weapon;
     [SerializeField] ParticleSystem projectileParticles;
     [SerializeField] float range = 15f;
@@ -19,41 +22,49 @@ public class BuildingTargetFinder : MonoBehaviour
     Transform target;
     EnemyAI[] enemies;
     Quaternion startRotation;
+    
+    private void Awake()
+    {
+        
+    }
     private void Start()
     {
+
         startRotation = transform.rotation;
         enemies = FindObjectsOfType<EnemyAI>();
         audioSource = GetComponent<AudioSource>();
     }
     void Update()
-    {
+    { 
+
         var emission = projectileParticles.emission;
 
         if (gameObject.GetComponent<CheckBuildPlacement>().isPlaced)
         {
             emission.enabled = true;
-
-            FindClosestEnemyTarget(); 
+            FindClosestEnemyTarget();
             AimWeapon();
         }
 
         else
         {
-             emission.enabled = false;
+            emission.enabled = false;
         }
         //var amount = MathF.Abs(currentNUmberOfParticles - projectileParticles.particleCount);
-        if(projectileParticles.particleCount < currentNUmberOfParticles)
+        if (projectileParticles.particleCount < currentNUmberOfParticles)
         {
             //Can play a sound when the particle is 'dead' also
             //StartCoroutine(PlaySound(particleDead, soundDelay);
             //Debug.Log("particle dead?");
         }
-        if(projectileParticles.particleCount > currentNUmberOfParticles)
+        if (projectileParticles.particleCount > currentNUmberOfParticles)
         {
             //Plays sound when particle is 'born'
             StartCoroutine(PlaySound(firingAudio, soundDelay));
         }
         currentNUmberOfParticles = projectileParticles.particleCount;
+
+        
     }
 
     private IEnumerator PlaySound(AudioClip clip, float soundDelay)
@@ -66,6 +77,7 @@ public class BuildingTargetFinder : MonoBehaviour
 
     void FindClosestEnemyTarget()
     {
+        //if ()
         EnemyAI[] enemies = FindObjectsOfType<EnemyAI>();
         //Debug.Log(enemies);
         //if (enemies == null) { return; }
@@ -87,11 +99,7 @@ public class BuildingTargetFinder : MonoBehaviour
     }
     void AimWeapon()
     {
-        
-
         float targetDistance = Vector3.Distance(transform.position, target.position);
-
-
 
         if (targetDistance < range)
         {
@@ -103,11 +111,11 @@ public class BuildingTargetFinder : MonoBehaviour
             weapon.rotation = startRotation;
             Attack(false);
         }
-
     }
     void Attack(bool isActive)
     {
         var emissionModule = projectileParticles.emission;
         emissionModule.enabled = isActive;
     }
+
 }

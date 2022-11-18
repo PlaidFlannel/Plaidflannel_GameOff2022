@@ -2338,6 +2338,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1704015382047143553, guid: 710f729e76d832e46b64104a189324ca, type: 3}
+      propertyPath: levelCompletedMenu
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3592108558528657710, guid: 710f729e76d832e46b64104a189324ca, type: 3}
       propertyPath: m_RootOrder
       value: 3
