@@ -49,7 +49,7 @@ public class SlidingDoor : MonoBehaviour
         }
 
         //moveEnabled = controlButton.objectEnabled;
-        Debug.Log("movenabled on door " + moveEnabled);
+        //Debug.Log("movenabled on door " + moveEnabled);
         if (moveEnabled)
         {
             transform.position = Vector3.MoveTowards(transform.position, endPosition, moveSpeed * Time.deltaTime);

@@ -45,3 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverText: {fileID: 0}
+  bottomUI: {fileID: 0}
+  goal: 0
+  level1Complete: 0
+  level2Complete: 0
+  level3Complete: 0

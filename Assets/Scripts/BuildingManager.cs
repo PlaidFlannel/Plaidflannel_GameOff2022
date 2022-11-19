@@ -24,7 +24,6 @@ public class BuildingManager : MonoBehaviour
     public float gridSize; //determines grid size which objects will snap to
     bool gridSnapOn = true;
     [SerializeField] private Toggle gridToggle;
-    [SerializeField] GameObject buildUI;
 
     BuildingButtons[] buildingButtons;
 
@@ -37,6 +36,7 @@ public class BuildingManager : MonoBehaviour
         //buildUI.SetActive(false);
         buildingButtons = FindObjectsOfType<BuildingButtons>();
         bank = FindObjectOfType<Bank>();
+        Debug.Log("BuildingManager active");
     }
     void Update()
     {
@@ -78,10 +78,6 @@ public class BuildingManager : MonoBehaviour
                 
                 if (hit.collider.gameObject.CompareTag("BuildingTile"))
                 {
-                    //Vector3 wheresItAt = Input.mousePosition;
-                    //Debug.Log(wheresItAt);
-                    ////buildUI.transform.position = new Vector2(wheresItAt.x, wheresItAt.y);
-                    //buildUI.SetActive(true);
                     //BuildingPlatform platform = hit.collider.gameObject.GetComponent<BuildingPlatform>();
                     if (Input.GetMouseButtonDown(0) && canPlace)
                     {
@@ -107,7 +103,6 @@ public class BuildingManager : MonoBehaviour
     }
     public void PlaceObject()
     {
-        //buildUI.SetActive(false);
         pendingObject.gameObject.tag = "Object";
         pendingObject.GetComponent<MeshRenderer>().material = materials[2];
         pendingObject = null;

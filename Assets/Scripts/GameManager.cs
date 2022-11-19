@@ -7,9 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI gameOverText;
-    [SerializeField] GameObject levelMenu;
-    [SerializeField] GameObject bottomUI;
+
    // EnemyAI enemyAI;
     //GameObject enemy;
     public bool goal;
@@ -26,27 +24,31 @@ public class GameManager : MonoBehaviour
 
     static public GameManager instance;
     ScoreKeeper scoreKeeper;
-    LevelCompleteMenu levelCompleteMenu;
+    //LevelCompleteMenu levelCompleteMenu;
+    UIController UIController;
 
     private void Awake()
     {
         ManageSingleton();
-        levelCompleteMenu = FindObjectOfType<LevelCompleteMenu>();
-        Debug.Log(levelCompleteMenu);
-        levelMenu = levelCompleteMenu.GetComponent<GameObject>();
-        levelMenu.gameObject.SetActive(false);
+        
+        //Debug.Log(levelCompleteMenu);
+        //levelMenu = levelCompleteMenu.GetComponent<GameObject>();
+        //levelMenu.gameObject.SetActive(true);
     }
     void Start()
     {
-
+        UIController = FindObjectOfType<UIController>();
+        //levelCompleteMenu = FindObjectOfType<LevelCompleteMenu>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
         bank = FindObjectOfType<Bank>();
         
         playerMovement = FindObjectOfType<PlayerMovement>();
-        allEnemies = GameObject.FindGameObjectsWithTag("Enemies");
-        bottomUI.gameObject.SetActive(true);
-        gameOverText.gameObject.SetActive(false);
-        levelMenu.gameObject.SetActive(false);
+        
+        ////bottomUI.gameObject.SetActive(true);
+        ////gameOverText.gameObject.SetActive(false);
+
+
+        //levelMenu.gameObject.SetActive(false);
         //goal = FindObjectOfType<Goal>().goalReached;
         
     }
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
 
     private void LevelComplete()
     {
+        //levelCompleteMenu.LevelCompleteMenuDisplay();
         goal = false;
         Debug.Log("gamemanager sees the goal");
         scoreKeeper.ModifyGold(bank.CurrentBalance);
@@ -71,18 +74,21 @@ public class GameManager : MonoBehaviour
         //gameOverText.gameObject.SetActive(true);
 
 
-        bottomUI.gameObject.SetActive(false);
+        //bottomUI.gameObject.SetActive(false);
+        UIController.BottomUIDisplayToggle();
+        UIController.LevelCompleteMenuDisplayToggle();
         playerMovement.enabled = false;
+        allEnemies = GameObject.FindGameObjectsWithTag("Enemies");
         foreach (GameObject enemy in allEnemies)
         {
-
+            
             enemyController = enemy.GetComponent<EnemyAI>();
             if (enemyController.enabled) { enemyController.enabled = false; Debug.Log("1 enemy disabled"); }
 
 
         }
 
-        levelMenu.gameObject.SetActive(true);
+        //levelMenu.gameObject.SetActive(true);
     }
 
     void ManageSingleton()
