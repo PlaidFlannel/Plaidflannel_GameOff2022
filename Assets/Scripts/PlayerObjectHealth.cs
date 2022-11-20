@@ -7,19 +7,19 @@ public class PlayerObjectHealth : MonoBehaviour
 {
     public float health = 100f;
     public float maxHealth = 150f;
+    [SerializeField] float deathReloadDelay = 2.5f;
     [SerializeField] TextMeshProUGUI healthDisplay;
     [SerializeField] float healingItemHitValue = 15f;
 
     [SerializeField] AudioClip healthIncoming;
     [SerializeField] AudioClip takingDamage;
-    //[SerializeField] AudioClip rolling;
 
     AudioSource audioSource;
-
+    GameManager gameManager;
     
     private void Start()
     {
-
+        gameManager = FindObjectOfType<GameManager>();
         audioSource = GetComponent<AudioSource>();
         healthDisplay.text = "Health: " + health.ToString() + "%";
 
@@ -35,8 +35,12 @@ public class PlayerObjectHealth : MonoBehaviour
         healthDisplay.text = "Health: " + health.ToString() + "%";
         if (health <= 0)
         {
+            gameManager.DelayedReloadLevel();
+            //ProcessDeath();
             //destroy or set inactive...
             Destroy(gameObject);
+
+
             //gameObject.SetActive(false);
         }
     }
@@ -47,16 +51,27 @@ public class PlayerObjectHealth : MonoBehaviour
         {
             audioSource.PlayOneShot(healthIncoming);
             //Debug.Log("HealthUp" + health);
+
             ProcessHealthUpHit(healingItemHitValue);
         }
     }
     void ProcessHealthUpHit(float healingValue)
     {
-        if (health < maxHealth)
+        if (health + healingValue < maxHealth )
         {
             health += healingValue;
             healthDisplay.text = "Health: " + health.ToString() + "%";
         }
+        if (health + healingValue > maxHealth)
+        {
+            health = maxHealth;
+            healthDisplay.text = "Health: " + health.ToString() + "%";
+        }
+    }
 
+    IEnumerator ProcessDeath()
+    {
+        yield return new WaitForSeconds(deathReloadDelay);
+        gameManager.ReloadLevel();
     }
 }

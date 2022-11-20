@@ -36,7 +36,7 @@ public class BuildingManager : MonoBehaviour
         //buildUI.SetActive(false);
         buildingButtons = FindObjectsOfType<BuildingButtons>();
         bank = FindObjectOfType<Bank>();
-        Debug.Log("BuildingManager active");
+        //Debug.Log("BuildingManager active");
     }
     void Update()
     {

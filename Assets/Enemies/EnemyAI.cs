@@ -16,8 +16,13 @@ public class EnemyAI : MonoBehaviour
 
     GameObject targetObject;
     Transform target;
+    
+
+    //bool gameComplete = false;
     void Start()
     {
+        //rb = GetComponent<Rigidbody>();
+        //gameManager = FindObjectOfType<GameManager>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         //Transform target = GetComponent<PlayerObjectHealth>().transform;
         targetObject = GameObject.FindWithTag("Ball");

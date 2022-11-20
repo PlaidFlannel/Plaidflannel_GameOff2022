@@ -94,10 +94,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.5513134
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0.0513134}
 --- !u!1 &4990759620390119852
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +191,7 @@ SphereCollider:
   m_GameObject: {fileID: 4990759620390119852}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 1578833914}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
   rotationSmoothTime: 0
   gravity: 9.8
   gravityMultiplier: 2
-  jumpHeight: 3
+  jumpHeight: 0.75
   coinPickup: {fileID: 8300000, guid: e2a16b2d1d5aac84d8452d439bae5de3, type: 3}
   hitBall: {fileID: 8300000, guid: 8ccf677a05e4ef343899140562602651, type: 3}
 --- !u!143 &4990759620727488530
@@ -475,7 +475,7 @@ SphereCollider:
   m_GameObject: {fileID: 4990759621013179103}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

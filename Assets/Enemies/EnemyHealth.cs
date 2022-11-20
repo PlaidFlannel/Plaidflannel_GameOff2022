@@ -30,8 +30,10 @@ public class EnemyHealth : MonoBehaviour
     AudioSource audioSource;
 
     public bool isDead = false;
+    //public bool seesTheGoal;
     ScoreKeeper scoreKeeper;
-
+    GameManager gameManager;
+    EnemyAI enemyAI;
     void OnEnable()
     {
         currentHitPoints = maxHitPoints;
@@ -39,15 +41,24 @@ public class EnemyHealth : MonoBehaviour
     }
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
-
+        enemyAI = GetComponent<EnemyAI>();
         audioSource = GetComponent<AudioSource>();
         damageFromArrow = buildingManager.damageFromBallista;
         damageFromCannonBall = buildingManager.damageFromCannon;
     }
-
+    private void Update()
+    {
+        if (gameManager.gameManagerGoal)
+        {
+            Debug.Log("enemy health sees the goal");
+            enemyAI.enabled = false;
+        }
+    }
     void OnParticleCollision(GameObject other)
     {
+
         if (other.gameObject.CompareTag("Arrow"))
         {
             StartCoroutine(ChangeColor());

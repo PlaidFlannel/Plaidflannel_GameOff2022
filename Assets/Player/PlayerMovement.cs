@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     CharacterController controller;
     [SerializeField] float speed = 5f;
     [SerializeField] float rotationSmoothTime;
@@ -22,8 +23,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] AudioClip coinPickup;
     [SerializeField] AudioClip hitBall;
 
+    //GameManager gameManager;
     AudioSource audioSource;    
     Bank bank;
+    Goal goal;
+
+    //bool gameIsOver;
 
     void Awake()
     {
@@ -33,11 +38,18 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
+        goal = FindObjectOfType<Goal>();
+       // gameIsOver = goal.goalReached;
+       // gameManager = FindObjectOfType<GameManager>();
+        //gameIsOver = gameManager.goal;
         audioSource = GetComponent<AudioSource>();
         bank = FindObjectOfType<Bank>();
     }
     void Update()
     {
+        //Debug.Log("Player controller monitoring goal.goalReached: " + goal.goalReached);
+        if (goal.goalReached) { return; }
+
         HandleMovement();
         HandleGravityandJump();
 
@@ -92,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ball"))
         {
-            Debug.Log("Hit ball");
+            //Debug.Log("Hit ball");
             audioSource.PlayOneShot(hitBall);
         }
     }

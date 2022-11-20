@@ -67,7 +67,7 @@ public class ScoreKeeper : MonoBehaviour
     {
         ballHealthFinal += value;
         //Mathf.Clamp(ballHealthFinal, 0, float.MaxValue);
-        Debug.Log(ballHealthFinal);
+        //Debug.Log(ballHealthFinal);
     }
 
     public void ResetScore()

@@ -356,7 +356,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5820812705287834939}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.67110723, y: 1, z: -3.4726434}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -390,6 +390,7 @@ MonoBehaviour:
   - {fileID: 4413713320354685033}
   coinDrop: {fileID: 2038913856042312234, guid: 77da6a5651db9b64abf6256327e8a98e, type: 3}
   currentHitPoints: 0
+  isDead: 0
 --- !u!114 &1913497118876418153
 MonoBehaviour:
   m_ObjectHideFlags: 0

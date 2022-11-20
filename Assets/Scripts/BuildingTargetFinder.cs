@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+
 using UnityEngine;
-using UnityEngine.Android;
+
 
 
 public class BuildingTargetFinder : MonoBehaviour
@@ -22,6 +22,9 @@ public class BuildingTargetFinder : MonoBehaviour
     Transform target;
     EnemyAI[] enemies;
     Quaternion startRotation;
+    //GameManager gameManager;
+    Goal goal;
+    //bool levelComplete;
     
     private void Awake()
     {
@@ -29,15 +32,22 @@ public class BuildingTargetFinder : MonoBehaviour
     }
     private void Start()
     {
-
+        goal = FindObjectOfType<Goal>();
         startRotation = transform.rotation;
         enemies = FindObjectsOfType<EnemyAI>();
         audioSource = GetComponent<AudioSource>();
     }
     void Update()
-    { 
-
+    {
         var emission = projectileParticles.emission;
+
+        if (goal.goalReached) 
+        {
+            emission.enabled = false;
+            return; 
+        }
+
+
 
         if (gameObject.GetComponent<CheckBuildPlacement>().isPlaced)
         {
@@ -63,9 +73,7 @@ public class BuildingTargetFinder : MonoBehaviour
             StartCoroutine(PlaySound(firingAudio, soundDelay));
         }
         currentNUmberOfParticles = projectileParticles.particleCount;
-
-        
-    }
+     }
 
     private IEnumerator PlaySound(AudioClip clip, float soundDelay)
     {

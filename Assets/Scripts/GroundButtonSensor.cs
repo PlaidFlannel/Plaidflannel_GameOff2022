@@ -17,7 +17,7 @@ public class GroundButtonSensor : MonoBehaviour
     {
         //connectedObject = GetComponent<GameObject>();
         meshRenderer = GetComponent<MeshRenderer>();
-        Debug.Log(PlayerControlsIt);
+        //Debug.Log(PlayerControlsIt);
     }
 
     

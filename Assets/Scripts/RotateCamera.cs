@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class RotateCamera : MonoBehaviour
 {
-    [SerializeField] Button rotateRight;
-    [SerializeField] Button rotateLeft;
+    //[SerializeField] Button rotateRight;
+    //[SerializeField] Button rotateLeft;
     [SerializeField] float rotationAmount = 0f;
     // Start is called before the first frame update
     void Start()

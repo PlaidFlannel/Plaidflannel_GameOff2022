@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Goal : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class Goal : MonoBehaviour
     GameManager gameManager;
     PlayerObjectHealth ballHealth;
     ScoreKeeper scoreKeeper;
-    BoxCollider boxCollider;
+    //BoxCollider boxCollider;
+    [SerializeField] int currentLevel;
     private void Start()
     {
         ballHealth = FindObjectOfType<PlayerObjectHealth>();
@@ -19,16 +21,21 @@ public class Goal : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Goal triggered");
+        //Debug.Log("Goal triggered");
         //if (other.gameObject == ball)
         if(other.tag == "Ball")
         {
-            //boxCollider.enabled = false;
-            Debug.Log(ballHealth.health);
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            if (currentSceneIndex == 1) { gameManager.level1Complete = true; }
+            if (currentSceneIndex == 2) { gameManager.level2Complete = true; }
+            if (currentSceneIndex == 3) { gameManager.level3Complete = true; }
+
             scoreKeeper.ModifyHealth(ballHealth.health);
-            gameManager.goal = true;
-            //Debug.Log("reached goal");
+            gameManager.gameManagerGoal = true;
+            gameManager.level1Complete = true ;
             goalReached = true;
+            //Debug.Log("goalReached: " + goalReached);
+
         }
     }
 }
