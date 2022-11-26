@@ -33,7 +33,20 @@ public class BuildingPlatform : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        gameObject.tag = "BuildingTile";
+        if (other.gameObject.CompareTag("Player") || 
+            other.gameObject.CompareTag("Enemies") || 
+            other.gameObject.CompareTag("Ball") || 
+            other.gameObject.CompareTag("Coin") || 
+            other.gameObject.CompareTag("UnbuiltObject"))
+        {
+            Debug.Log(other.gameObject.tag + " triggered the platform");
+            return; 
+        }
+        if (other.gameObject.CompareTag("Object"))
+        {
+            Debug.Log(other.gameObject.tag + "only if deleted");
+            //Debug.Log("normal?");
+            gameObject.tag = "BuildingTile"; }
     }
 
     public void TogglePlatform()

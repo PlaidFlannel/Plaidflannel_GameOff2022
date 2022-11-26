@@ -14,6 +14,7 @@ public class SlidingDoor : MonoBehaviour
     [SerializeField] GroundButtonSensor controlButton2;
 
     [SerializeField] bool staysOpen;
+    [SerializeField] bool bothButtonsRequired;
     bool moveEnabled = false;
     // Start is called before the first frame update
     void Start()
@@ -25,28 +26,57 @@ public class SlidingDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(controlButton2 != null)
+        if (bothButtonsRequired)
         {
-            if (controlButton1.objectEnabled || controlButton2.objectEnabled)
+            if (controlButton2 != null)
             {
-                moveEnabled = true;
+                if (controlButton1.objectEnabled && controlButton2.objectEnabled)
+                {
+                    moveEnabled = true;
+                }
+                if (!controlButton1.objectEnabled && !controlButton2.objectEnabled)
+                {
+                    moveEnabled = false;
+                }
             }
-            if (!controlButton1.objectEnabled && !controlButton2.objectEnabled)
+            else
             {
-                moveEnabled = false;
+                if (controlButton1.objectEnabled)
+                {
+                    moveEnabled = false;
+                }
+                if (!controlButton1.objectEnabled)
+                {
+                    moveEnabled = false;
+                }
             }
         }
-        else
+        if (!bothButtonsRequired)
         {
-            if (controlButton1.objectEnabled)
+            if (controlButton2 != null)
             {
-                moveEnabled = true;
+                if (controlButton1.objectEnabled || controlButton2.objectEnabled)
+                {
+                    moveEnabled = true;
+                }
+                if (!controlButton1.objectEnabled && !controlButton2.objectEnabled)
+                {
+                    moveEnabled = false;
+                }
             }
-            if (!controlButton1.objectEnabled)
+            else
             {
-                moveEnabled = false;
+                if (controlButton1.objectEnabled)
+                {
+                    moveEnabled = true;
+                }
+                if (!controlButton1.objectEnabled)
+                {
+                    moveEnabled = false;
+                }
             }
         }
+
 
         //moveEnabled = controlButton.objectEnabled;
         //Debug.Log("movenabled on door " + moveEnabled);
@@ -59,6 +89,12 @@ public class SlidingDoor : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * 0.25f * Time.deltaTime);
         }
     }
+
+    private static void HandleButton()
+    {
+        HandleButton();
+    }
+
     void DoAction()
     {
         if (moveEnabled) { moveEnabled = false; }

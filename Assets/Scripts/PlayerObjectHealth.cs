@@ -8,7 +8,7 @@ public class PlayerObjectHealth : MonoBehaviour
     public float health = 100f;
     public float maxHealth = 150f;
     [SerializeField] float deathReloadDelay = 2.5f;
-    [SerializeField] TextMeshProUGUI healthDisplay;
+    //[SerializeField] TextMeshProUGUI healthDisplay;
     [SerializeField] float healingItemHitValue = 15f;
 
     [SerializeField] AudioClip healthIncoming;
@@ -21,7 +21,7 @@ public class PlayerObjectHealth : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         audioSource = GetComponent<AudioSource>();
-        healthDisplay.text = "Health: " + health.ToString() + "%";
+        //healthDisplay.text = "Health: " + health.ToString() + "%";
 
     }
     private void Update()
@@ -32,7 +32,7 @@ public class PlayerObjectHealth : MonoBehaviour
     {
         health -= damage;
         audioSource.PlayOneShot(takingDamage);
-        healthDisplay.text = "Health: " + health.ToString() + "%";
+        //healthDisplay.text = "Health: " + health.ToString() + "%";
         if (health <= 0)
         {
             gameManager.DelayedReloadLevel();
@@ -60,12 +60,12 @@ public class PlayerObjectHealth : MonoBehaviour
         if (health + healingValue < maxHealth )
         {
             health += healingValue;
-            healthDisplay.text = "Health: " + health.ToString() + "%";
+            //healthDisplay.text = "Health: " + health.ToString() + "%";
         }
         if (health + healingValue > maxHealth)
         {
             health = maxHealth;
-            healthDisplay.text = "Health: " + health.ToString() + "%";
+            //healthDisplay.text = "Health: " + health.ToString() + "%";
         }
     }
 

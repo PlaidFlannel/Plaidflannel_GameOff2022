@@ -4885,7 +4885,6 @@ MonoBehaviour:
   range: 15
   firingAudio: {fileID: 8300000, guid: b54a9a16a6e5bc64f9458aa6586ed775, type: 3}
   soundDelay: 0
-  sensor: {fileID: 6815614109675189880}
 --- !u!114 &8669397615418772675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5243,8 +5242,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: weapon_ballista
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a857b665a13f98844814399fbc72ab03, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a857b665a13f98844814399fbc72ab03, type: 3}
+--- !u!1 &8568851941548783024 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a857b665a13f98844814399fbc72ab03, type: 3}
+  m_PrefabInstance: {fileID: 8803346092543658209}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8560302078181544632
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8568851941548783024}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &9052655111823568650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a857b665a13f98844814399fbc72ab03, type: 3}

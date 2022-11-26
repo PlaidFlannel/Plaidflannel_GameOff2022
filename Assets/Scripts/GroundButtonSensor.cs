@@ -8,8 +8,9 @@ public class GroundButtonSensor : MonoBehaviour
     [SerializeField] Material wrongThing;
     [SerializeField] Material active;
     [SerializeField] Material inactive;
-    [Header("Object controlled by this button.")]
+    [Header("Object controlled by this button. (Not needed here to work.")]
     [SerializeField] GameObject connectedObject;
+    //[SerializeField] GameObject connectedObject2;
     [SerializeField] bool PlayerControlsIt;
     public bool objectEnabled = false;
     MeshRenderer meshRenderer;

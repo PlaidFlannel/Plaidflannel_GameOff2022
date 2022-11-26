@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     CharacterController controller;
     [SerializeField] float speed = 5f;
+    [SerializeField] float fasterSpeed = 10f;
     [SerializeField] float rotationSmoothTime;
     float currentAngle;
     float currentAngleVelocity;
@@ -19,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     //[SerializeField] float groundedGravity = -0.5f;
     [SerializeField] float jumpHeight = 3f;
     private float velocityY;
-
+    private float defaultSpeed;
     [SerializeField] AudioClip coinPickup;
     [SerializeField] AudioClip hitBall;
 
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         cam = Camera.main;
+        defaultSpeed = speed;
 
     }
     void Start()
@@ -52,11 +54,24 @@ public class PlayerMovement : MonoBehaviour
 
         HandleMovement();
         HandleGravityandJump();
+        HandleSpeedIncrease();
 
 
     }
     // Entire movement code encapsulated in a function
     // and calling it from Update
+    private void HandleSpeedIncrease()
+    {
+        if (Input.GetKey(KeyCode.LeftShift)) 
+        //if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            speed = fasterSpeed;
+        }
+        else
+        {
+            speed = defaultSpeed;
+        }
+    }
     private void HandleMovement()
     {
         //capturing Input from Player
