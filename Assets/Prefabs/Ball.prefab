@@ -51,11 +51,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 150
-  healthDisplay: {fileID: 0}
+  deathReloadDelay: 2.5
   healingItemHitValue: 10
   healthIncoming: {fileID: 8300000, guid: 402ddc8104c093f4282a52b2a3dad53c, type: 3}
   takingDamage: {fileID: 8300000, guid: 08f6b5965ee9a4a43903504e3540830a, type: 3}
-  rolling: {fileID: 8300000, guid: 9f6039bf5a00e654aa1d4736774ed5b1, type: 3}
+  normalMaterial: {fileID: 2100000, guid: 4fb6af25d1e06a14b99afd88a987b058, type: 2}
+  damageMaterial: {fileID: 2100000, guid: 8a784645f7566534982753a1cd9c49a3, type: 2}
 --- !u!33 &4352724295346267011
 MeshFilter:
   m_ObjectHideFlags: 0

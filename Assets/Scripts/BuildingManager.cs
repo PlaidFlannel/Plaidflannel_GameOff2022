@@ -31,6 +31,8 @@ public class BuildingManager : MonoBehaviour
     public bool canPlace;
     int goldCost;
     Bank bank;
+    GameObject platform;
+    bool platformOccupied;
     private void Start()
     {
         //buildUI.SetActive(false);
@@ -86,7 +88,10 @@ public class BuildingManager : MonoBehaviour
                         {
                             bank.Withdraw(goldCost);
                             toggleBuildableAction.isPlaced = true;
-                            hit.collider.gameObject.tag = "OccupiedBuildingTile";
+                            //hit.collider.gameObject.tag = "OccupiedBuildingTile";
+                            platform = hit.collider.gameObject;
+                            //platformOccupied = platform.GetComponent<BuildingPlatform>().isOccupied;
+                            
                             PlaceObject();
                             //platform.isOccupied = true;
                         }
@@ -104,6 +109,10 @@ public class BuildingManager : MonoBehaviour
     public void PlaceObject()
     {
         pendingObject.gameObject.tag = "Object";
+        platform.GetComponent<BuildingPlatform>().isOccupied = true;
+        //Debug.Log(platformOccupied);
+        pendingObject.GetComponent<BuildingInfo>().myPlatform = platform;
+        
         pendingObject.GetComponent<MeshRenderer>().material = materials[2];
         pendingObject = null;
     }

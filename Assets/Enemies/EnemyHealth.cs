@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -22,15 +21,13 @@ public class EnemyHealth : MonoBehaviour
     private int damageFromCannonBall;
 
     BuildingManager buildingManager;
-    //BuildingTargetFinder buildingTargetFinder;
-    //BuildingTargetFinder[] buildingTargetFinders;
 
     [SerializeField] int currentHitPoints = 0;
 
     AudioSource audioSource;
 
     public bool isDead = false;
-    //public bool seesTheGoal;
+
     ScoreKeeper scoreKeeper;
     GameManager gameManager;
     EnemyAI enemyAI;

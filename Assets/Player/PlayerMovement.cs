@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Gravity")]
     [SerializeField] float gravity = 9.8f;
     [SerializeField] float gravityMultiplier = 2;
-    //[SerializeField] float groundedGravity = -0.5f;
+    [SerializeField] float groundedGravity = -0.5f;
     [SerializeField] float jumpHeight = 3f;
     private float velocityY;
     private float defaultSpeed;
@@ -88,11 +88,13 @@ public class PlayerMovement : MonoBehaviour
     void HandleGravityandJump()
     {
 
-        //if (controller.isGrounded && velocityY < 0f) 
-        //{ velocityY = groundedGravity; }
+        //if (controller.isGrounded && velocityY < 0f)
+        //prevents double jumps
+        if (controller.isGrounded)
+            { velocityY = groundedGravity; }
 
-        //if (controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
+        //if (Input.GetKeyDown(KeyCode.Space))
         {
             velocityY = Mathf.Sqrt(jumpHeight * 2f * gravity);
         }

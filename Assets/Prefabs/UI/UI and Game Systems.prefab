@@ -382,7 +382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1712287061549194554, guid: 441fac6f850151d4f93e578474a538ea, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1712287061549194555, guid: 441fac6f850151d4f93e578474a538ea, type: 3}
       propertyPath: moveButton
@@ -653,7 +653,7 @@ PrefabInstance:
       objectReference: {fileID: 4856674405074962293}
     - target: {fileID: 4524046885339837203, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4524046885374325779, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

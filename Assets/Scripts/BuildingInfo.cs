@@ -10,21 +10,11 @@ public class BuildingInfo : MonoBehaviour
     public int goldCost;
     public string buildingDescription;
     public int damageAmount;
-    //BuildingManager buildingManager;
-    //public bool isCannon;
-    //public bool isBallista;
+    public GameObject myPlatform;
 
     private void Awake()
     {
-        /*buildingManager = FindObjectOfType<BuildingManager>();
-        if (isCannon)
-        {
-            damageAmount = buildingManager.damageFromCannon;
-        }
-        if (isBallista)
-        {
-            damageAmount = buildingManager.damageFromCannon;
-        }*/
+
     }
     void Start()
     {
@@ -32,7 +22,6 @@ public class BuildingInfo : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         

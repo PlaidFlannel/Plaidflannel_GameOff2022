@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     public bool gameManagerGoal;
     public bool gameActive;
     [SerializeField] float reloadDelay = 1.0f;
-    GameObject[] allEnemies;
-    private EnemyAI enemyController;
+    //GameObject[] allEnemies;
+    //private EnemyAI enemyController;
 
     public bool level1Complete = false;
     public bool level2Complete = false;
@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     ScoreKeeper scoreKeeper;
     Bank bank;
-    UIController UIController;
+    // UIController UIController;
     //Goal goal;
     //PlayerMovement playerMovement;
 
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        Debug.Log("gamemanager start");
+        //Debug.Log("gamemanager start");
         //UIController = FindObjectOfType<UIController>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
         bank = FindObjectOfType<Bank>();
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("monitoring gameManagerGoal " + gameManagerGoal);
+        //Debug.Log("monitoring gameManagerGoal " + gameManagerGoal);
         if (gameManagerGoal == true)
         {
             LevelComplete();
@@ -108,12 +108,12 @@ public class GameManager : MonoBehaviour
     }
     public void DelayedReloadLevel() 
     {
-        Debug.Log("delay reload step 1");
+        //Debug.Log("delay reload step 1");
         StartCoroutine(ReloadWithDelay()); 
     }
     IEnumerator ReloadWithDelay()
     {
-        Debug.Log("reloading with delay");
+        //Debug.Log("reloading with delay");
         yield return new WaitForSeconds(reloadDelay);
         ReloadLevel();
     }

@@ -10,6 +10,7 @@ using UnityEngine.UIElements;
 public class SelectedBuildingManager : MonoBehaviour
 {
     //has some bugs, decided to not let player select and move placed towers.
+    //nevermind found out how to fix it.
     [SerializeField] private Material highlightSelectionMaterial;
     [SerializeField] private Material buildablesBuiltMaterial;
 
@@ -27,6 +28,7 @@ public class SelectedBuildingManager : MonoBehaviour
     private Bank bank;
     
     public GameObject selectionUI;
+    GameObject platform;
 
     float goldCost = 0;
     float deleteBuildingDelay = 0.5f;
@@ -74,6 +76,8 @@ public class SelectedBuildingManager : MonoBehaviour
         {
 
         }*/
+
+        
         if (obj == selectedObject) return;
 
         if (selectedObject != null) Deselect();
@@ -86,8 +90,9 @@ public class SelectedBuildingManager : MonoBehaviour
         //sets the name in the UI
         objNameTxt.text = obj.name;
 
-
+        
         selectedObject = obj;
+        platform = selectedObject.gameObject.GetComponent<BuildingInfo>().myPlatform;
         selectionUI.SetActive(true);
         goldCost = obj.GetComponent<BuildingInfo>().goldCost;
 
@@ -107,8 +112,9 @@ public class SelectedBuildingManager : MonoBehaviour
     {
         
         GameObject objToDestroy = selectedObject;
+        platform.GetComponent<BuildingPlatform>().isOccupied = false;
         Deselect();
-        objToDestroy.transform.position = new Vector3(0, -100, 0);
+        //objToDestroy.transform.position = new Vector3(0, -100, 0);
         
         //Destroy(objToDestroy);
         StartCoroutine(DeleteBuilding(objToDestroy));

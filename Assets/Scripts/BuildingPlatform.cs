@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BuildingPlatform : MonoBehaviour
 {
     public bool isOccupied;
+    public bool isBuiltUpon;
     [SerializeField] int unoccupiedYsize = 4;
     [SerializeField] int occupiedYsize = 1;
     BoxCollider boxCollider;
@@ -17,6 +18,15 @@ public class BuildingPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isOccupied)
+        {
+            boxCollider.size = new Vector3(boxCollider.size.x, occupiedYsize, boxCollider.size.z);
+        }
+        else
+        {
+            boxCollider.size = new Vector3(boxCollider.size.x, unoccupiedYsize, boxCollider.size.z);
+        }
+        /*
         if (gameObject.tag == "OccupiedBuildingTile")
         {
             isOccupied = true;
@@ -29,7 +39,7 @@ public class BuildingPlatform : MonoBehaviour
             // boxCollider.enabled = true;
             boxCollider.size = new Vector3(boxCollider.size.x, unoccupiedYsize, boxCollider.size.z);
         }
-        
+        */
     }
     private void OnTriggerExit(Collider other)
     {
