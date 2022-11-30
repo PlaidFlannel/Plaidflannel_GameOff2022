@@ -32,13 +32,11 @@ public class BuildingManager : MonoBehaviour
     int goldCost;
     Bank bank;
     GameObject platform;
-    bool platformOccupied;
+
     private void Start()
     {
-        //buildUI.SetActive(false);
         buildingButtons = FindObjectsOfType<BuildingButtons>();
         bank = FindObjectOfType<Bank>();
-        //Debug.Log("BuildingManager active");
     }
     void Update()
     {
@@ -67,10 +65,10 @@ public class BuildingManager : MonoBehaviour
             if (gridSnapOn)
             {
                 pendingObject.transform.position = new Vector3(
-                    RoundToNearestGrid(pos.x- 1),
-                    RoundToNearestGrid(pos.y- 1),
-                    RoundToNearestGrid(pos.z - 1)
-                    );
+                                                        RoundToNearestGrid(pos.x- 1),
+                                                        RoundToNearestGrid(pos.y- 1),
+                                                        RoundToNearestGrid(pos.z - 1)
+                                                                );
             }
             else { pendingObject.transform.position = pos; }
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -80,7 +78,6 @@ public class BuildingManager : MonoBehaviour
                 
                 if (hit.collider.gameObject.CompareTag("BuildingTile"))
                 {
-                    //BuildingPlatform platform = hit.collider.gameObject.GetComponent<BuildingPlatform>();
                     if (Input.GetMouseButtonDown(0) && canPlace)
                     {
 
@@ -88,14 +85,9 @@ public class BuildingManager : MonoBehaviour
                         {
                             bank.Withdraw(goldCost);
                             toggleBuildableAction.isPlaced = true;
-                            //hit.collider.gameObject.tag = "OccupiedBuildingTile";
                             platform = hit.collider.gameObject;
-                            //platformOccupied = platform.GetComponent<BuildingPlatform>().isOccupied;
-                            
                             PlaceObject();
-                            //platform.isOccupied = true;
                         }
-                        //else { Debug.Log("can't afford this"); }
                     }
                 }
             }
@@ -109,8 +101,9 @@ public class BuildingManager : MonoBehaviour
     public void PlaceObject()
     {
         pendingObject.gameObject.tag = "Object";
+
         platform.GetComponent<BuildingPlatform>().isOccupied = true;
-        //Debug.Log(platformOccupied);
+
         pendingObject.GetComponent<BuildingInfo>().myPlatform = platform;
         
         pendingObject.GetComponent<MeshRenderer>().material = materials[2];
@@ -133,7 +126,6 @@ public class BuildingManager : MonoBehaviour
     {
         if (canPlace)
         {
-            //Debug.Log(pendingObject.GetComponent<MeshRenderer>().material);
             pendingObject.GetComponent<MeshRenderer>().material = materials[0];
         }
         else
@@ -149,14 +141,8 @@ public class BuildingManager : MonoBehaviour
     }
     public void ToggleGrid()
     {
-        if (gridToggle.isOn) 
-        {
-            gridSnapOn = true;
-        }
-        else
-        {
-            gridSnapOn = false;
-        }
+        if (gridToggle.isOn) { gridSnapOn = true; }
+        else { gridSnapOn = false; }
     }
     float RoundToNearestGrid(float pos)
     {

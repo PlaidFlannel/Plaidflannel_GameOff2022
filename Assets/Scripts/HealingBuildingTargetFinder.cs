@@ -6,9 +6,8 @@ public class HealingBuildingTargetFinder : MonoBehaviour
 {
     [SerializeField] Transform weapon;
     [SerializeField] ParticleSystem projectileParticles;
-    //[SerializeField] ParticleSystem projectileParticles2;
+    [SerializeField] ParticleSystem projectileParticles2;
     [SerializeField] float range = 15f;
-
 
     [SerializeField] AudioClip firingAudio;
     [SerializeField] float soundDelay = 0.2f;
@@ -26,22 +25,23 @@ public class HealingBuildingTargetFinder : MonoBehaviour
     void Update()
     {
         var emission = projectileParticles.emission;
+        var emission2 = projectileParticles2.emission;
         if (gameObject.GetComponent<CheckBuildPlacement>().isPlaced)
         {
             emission.enabled = true;
-
+            emission2.enabled = true;
 
             if (playerObject != null) 
-            { 
-                 FindPlayerObject();
-                 AimWeapon();
+            {
+                FindPlayerObject();
+                AimWeapon();
             } 
-
         }
 
         else
         {
             emission.enabled = false;
+            emission2.enabled = false;
         }
         //var amount = MathF.Abs(currentNUmberOfParticles - projectileParticles.particleCount);
         if (projectileParticles.particleCount < currentNUmberOfParticles)
@@ -67,8 +67,6 @@ public class HealingBuildingTargetFinder : MonoBehaviour
 
     private void FindPlayerObject()
     {
-
-
         Transform closestTarget = null;
         float maxDistance = Mathf.Infinity;
 
@@ -90,7 +88,7 @@ public class HealingBuildingTargetFinder : MonoBehaviour
 
         weapon.LookAt(target);
 
-        if (targetDistance < range && playerObject.health + 1 < playerObject.maxHealth)
+        if (targetDistance < range && playerObject.needsHealth) //playerObject.health + 1 < playerObject.maxHealth)
         {
             Attack(true);
         }
@@ -103,6 +101,8 @@ public class HealingBuildingTargetFinder : MonoBehaviour
     void Attack(bool isActive)
     {
         var emissionModule = projectileParticles.emission;
+        var emissionModule2 = projectileParticles2.emission;
         emissionModule.enabled = isActive;
+        emissionModule2.enabled = isActive;
     }
 }

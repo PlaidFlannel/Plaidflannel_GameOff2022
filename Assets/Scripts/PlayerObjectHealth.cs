@@ -8,7 +8,8 @@ public class PlayerObjectHealth : MonoBehaviour
 {
     public float health = 100f;
     public float maxHealth = 150f;
-    [SerializeField] float deathReloadDelay = 2.5f;
+    public bool needsHealth = false;
+    //[SerializeField] float deathReloadDelay = 2.5f;
     [SerializeField] float healingItemHitValue = 15f;
 
     [SerializeField] AudioClip healthIncoming;
@@ -28,7 +29,11 @@ public class PlayerObjectHealth : MonoBehaviour
     }
     private void Update()
     {
-
+        if (health < maxHealth)
+        {
+            needsHealth = true;
+        }
+        else { needsHealth = false; }
     }
     public void TakeDamage(float damage)
     {
@@ -53,11 +58,11 @@ public class PlayerObjectHealth : MonoBehaviour
     }
     void ProcessHealthUpHit(float healingValue)
     {
-        if (health + healingValue < maxHealth )
+        if (health + healingValue <= maxHealth )
         {
             health += healingValue;
         }
-        if (health + healingValue > maxHealth)
+        if (health + healingValue >= maxHealth)
         {
             health = maxHealth;
         }
