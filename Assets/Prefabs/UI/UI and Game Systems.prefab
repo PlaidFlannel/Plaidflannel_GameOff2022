@@ -683,6 +683,34 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4856674405074962293}
+    - target: {fileID: 8602361563330953232, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8602361563330953232, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8602361563330953232, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4680150711217216020}
+    - target: {fileID: 8602361563330953232, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8602361563330953232, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8602361563330953232, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8602361563330953232, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
 --- !u!224 &4523985166085844309 stripped
@@ -690,6 +718,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4856735848608362928, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
   m_PrefabInstance: {fileID: 9056451945377176805}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4680150711217216020 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4421909529067702001, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}
+  m_PrefabInstance: {fileID: 9056451945377176805}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f6545dd32243e41a8c40441595d029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4856674404160790395 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4524046884874371998, guid: dc87dd4898f5c7844ba2c9f0e1566a16, type: 3}

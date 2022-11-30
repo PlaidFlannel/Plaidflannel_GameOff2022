@@ -67,6 +67,12 @@ public class UIController : MonoBehaviour
             LevelCompleteMenuDisplayToggle();
             BottomUIDisplayToggle();
         }
+        if (gameManager.audioListenerIsEnabled == false)
+        {
+            //if (!AudioListener.pause) {
+            audioButton.GetComponentInChildren<TextMeshProUGUI>().text = "Sounds Off";
+            AudioListener.pause = true;
+        }
     }
     private void AddButtonListeners()
     {
@@ -100,7 +106,7 @@ public class UIController : MonoBehaviour
 
         gameManager.LoadScene("Level" + nextSceneIndex);
     }
-    private void ToMainMenu()
+    public void ToMainMenu()
     {
         scoreKeeper.ResetScores();
         gameManager.LoadScene("MainMenu");

@@ -2907,6 +2907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI and Game Systems
       objectReference: {fileID: 0}
+    - target: {fileID: 9056451946359240419, guid: 7f43d9e9d47a9e343bdf323633ad4f7d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f43d9e9d47a9e343bdf323633ad4f7d, type: 3}
 --- !u!1001 &826478238
