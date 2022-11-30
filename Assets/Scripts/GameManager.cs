@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public bool gameManagerGoal;
     public bool gameActive;
+
     [SerializeField] float reloadDelay = 1.0f;
 
     public bool level1Complete = false;
@@ -18,13 +19,16 @@ public class GameManager : MonoBehaviour
     ScoreKeeper scoreKeeper;
     Bank bank;
     AudioSource audioSource;
+    AudioListener audioListener;
     static public GameManager instance;
+    public bool audioListenerIsEnabled = true;
     private void Awake()
     {
         ManageSingleton();
     }
     void Start()
     {
+        audioListener = GetComponent<AudioListener>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
         audioSource = GetComponent<AudioSource>();
         gameActive = true;
@@ -40,11 +44,14 @@ public class GameManager : MonoBehaviour
 
     private void LevelComplete()
     {
-        audioSource.PlayOneShot(levelCompleteAudio);
+        if (audioListenerIsEnabled) { audioSource.PlayOneShot(levelCompleteAudio); }
+
         bank = FindObjectOfType<Bank>();
         gameManagerGoal = false;
         gameActive = false;
         scoreKeeper.ModifyGold(bank.CurrentBalance);
+        scoreKeeper.SaveScores();
+
     }
 
     void ManageSingleton()
@@ -79,7 +86,8 @@ public class GameManager : MonoBehaviour
     }
     public void DelayedReloadLevel() 
     {
-        audioSource.PlayOneShot(levelFailedAudio);
+        if (audioListenerIsEnabled) { audioSource.PlayOneShot(levelFailedAudio); }
+
         StartCoroutine(ReloadWithDelay()); 
     }
     IEnumerator ReloadWithDelay()

@@ -29,7 +29,7 @@ public class UIController : MonoBehaviour
     RotateCamera rotateCamera;
     PlayerObjectHealth playerObjectHealth;
     AudioListener audioListener;
-
+    ScoreKeeper scoreKeeper;
     Button audioButton;
     //bool levelComplete;
     //test 
@@ -39,19 +39,24 @@ public class UIController : MonoBehaviour
         audioButton = soundsToggleButton.GetComponent<Button>();
         audioListener = FindObjectOfType<AudioListener>();
         playerObjectHealth = FindObjectOfType<PlayerObjectHealth>();
-        //float health = playerObjectHealth.health;
-        //Debug.Log("Health" + health);
+
         playerObjectHealthDisplay.text = "Health: " + playerObjectHealth.health.ToString() + "%";
         rotateCamera = FindObjectOfType<RotateCamera>();
         gameManager = FindObjectOfType<GameManager>();
         inGameMenu.SetActive(false);
         bottomUI.gameObject.SetActive(true);
-        //gameOverText.gameObject.SetActive(false);
 
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
         levelCompleteMenu.gameObject.SetActive(false );
 
-        //levelComplete = gameManager.goal;
+
         AddButtonListeners();
+        if (gameManager.audioListenerIsEnabled == false)
+        {
+            //if (!AudioListener.pause) {
+            audioButton.GetComponentInChildren<TextMeshProUGUI>().text = "Sounds Off";
+            AudioListener.pause = true;
+        }
 
     }
     void Update()
@@ -59,11 +64,9 @@ public class UIController : MonoBehaviour
         playerObjectHealthDisplay.text = "Health: " + playerObjectHealth.health.ToString() + "%";
         if (gameManager.gameManagerGoal)
         {
-            //Debug.Log("level complete in UIController");
             LevelCompleteMenuDisplayToggle();
             BottomUIDisplayToggle();
         }
-        //restartLevelButton.  
     }
     private void AddButtonListeners()
     {
@@ -77,28 +80,31 @@ public class UIController : MonoBehaviour
     }
     private void MuteAudioToggle()
     {
-
-        if (!AudioListener.pause) {
+        if (gameManager.audioListenerIsEnabled == true) {
+        //if (!AudioListener.pause) {
             audioButton.GetComponentInChildren<TextMeshProUGUI>().text = "Sounds Off";
-            AudioListener.pause = true; }
+            AudioListener.pause = true;
+            gameManager.audioListenerIsEnabled = false;
+        }
             
 
         else {
             audioButton.GetComponentInChildren<TextMeshProUGUI>().text = "Sounds On";
+            gameManager.audioListenerIsEnabled = true;
             AudioListener.pause = false; }
             
     }
     private void ToNextLevel()
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        //SceneManager.LoadScene(currentSceneIndex);
+
         gameManager.LoadScene("Level" + nextSceneIndex);
     }
     private void ToMainMenu()
     {
+        scoreKeeper.ResetScores();
         gameManager.LoadScene("MainMenu");
     }
-    // Update is called once per frame
 
     public void LevelCompleteMenuDisplayToggle()
     {
@@ -111,14 +117,7 @@ public class UIController : MonoBehaviour
     {
         if(bottomUI != null)
         {
-            //if (bottomUI.gameObject.activeSelf)
-            //{
-                bottomUI.gameObject.SetActive(false);
-            ///}
-            //else
-            //{
-             //   bottomUI.gameObject.SetActive(true);
-            //}
+            bottomUI.gameObject.SetActive(false);
         }
     }
 }

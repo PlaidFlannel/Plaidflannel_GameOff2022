@@ -1,14 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreKeeper : MonoBehaviour
 {
-    private int score;
-    private int goldTotal;
+    public int score;
+    public int goldTotal;
     public float ballHealthFinal; //remaining percent
-    private int enemiesDefeated;
+    public int enemiesDefeated;
 
+    //Level 1 score
+    public int level1GoldTotal;
+    public float level1BallHealthFinal;
+    public int level1EnemiesDefeated;
+    //Level 2 score
+    public int level2GoldTotal;
+    public float level2BallHealthFinal;
+    public int level2EnemiesDefeated;
+    //Level 3 score
+    public int level3GoldTotal;
+    public float level3BallHealthFinal;
+    public int level3EnemiesDefeated;
 
     static ScoreKeeper instance;
     void Awake()
@@ -73,5 +86,35 @@ public class ScoreKeeper : MonoBehaviour
     public void ResetScore()
     {
         score = 0;
+    }
+    public void SaveScores()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currentSceneIndex == 1) 
+        {
+            level1GoldTotal = goldTotal;
+            level1BallHealthFinal = ballHealthFinal;
+            level1EnemiesDefeated = enemiesDefeated;
+        }
+        if (currentSceneIndex == 2)
+        {
+            level2GoldTotal = goldTotal;
+            level2BallHealthFinal = ballHealthFinal;
+            level2EnemiesDefeated = enemiesDefeated;
+        }
+        if (currentSceneIndex == 3)
+        {
+            level3GoldTotal = goldTotal;
+            level3BallHealthFinal = ballHealthFinal;
+            level3EnemiesDefeated = enemiesDefeated;
+        }
+
+    }
+    public void ResetScores()
+    {
+
+        goldTotal = 0;
+        ballHealthFinal = 0;
+        enemiesDefeated = 0;
     }
 }

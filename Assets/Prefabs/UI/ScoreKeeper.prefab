@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8807225373530624778}
   - component: {fileID: 8807225373530624773}
-  - component: {fileID: 8807225373530624779}
   m_Layer: 0
   m_Name: ScoreKeeper
   m_TagString: Untagged
@@ -43,19 +42,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 604774ecc7482564e80642d3348e5e8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballHealthFinal: 0
---- !u!114 &8807225373530624779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8807225373530624772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93ba0ec05c7cdbc47b6f545dcf4473d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ballHealthFinal: 0
